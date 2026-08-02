@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Demon Blade Values</title>
+    
+    <!-- توحيد الخطوط والهوية البصرية -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://demon-blade-values.kesug.com/images-bda/favicon.png" type="image/png">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a1a2e;
+            color: #ccc;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .contact-container {
+            width: 100%;
+            max-width: 650px;
+            background-color: #0f1626;
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid #bfa368; /* الإطار الذهبي الأنيق */
+            box-shadow: 0 0 20px rgba(241, 196, 15, 0.15);
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.2rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #bfa368;
+            padding-bottom: 15px;
+        }
+
+        .subtitle {
+            color: #b0b8c9;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* تنسيق خطوات التواصل */
+        .steps-wrapper {
+            text-align: left;
+            margin: 25px 0;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(191, 163, 104, 0.15);
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            background-color: #ffdf5d;
+            color: #0f1626;
+            font-weight: bold;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 0 8px rgba(255, 223, 93, 0.4);
+        }
+
+        .step-text h3 {
+            margin: 0 0 5px 0;
+            color: #fff;
+            font-size: 1.05rem;
+        }
+
+        .step-text p {
+            margin: 0;
+            color: #b0b8c9;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* زر الديسكورد الأنيق والثابت */
+        .btn-discord {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 14px 30px;
+            background-color: #5865F2; /* لون ديسكورد الرسمي */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+        }
+
+        .btn-discord:hover {
+            background-color: #4752c4;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.5);
+        }
+
+        .btn-discord svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+
+        /* صندوق التحذير لمنع المزعجين */
+        .warning-box {
+            background-color: rgba(179, 36, 36, 0.08);
+            border: 1px solid #b32424;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 25px 0 15px 0;
+            text-align: left;
+        }
+
+        .warning-box h4 {
+            margin: 0 0 5px 0;
+            color: #ff9999;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box p {
+            margin: 0;
+            color: #b0b8c9;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #162447;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid #ffdf5d;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #ffdf5d;
+            color: #0f1626;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(255, 223, 93, 0.4);
+        }
+
+        /* التجاوب مع الجوال */
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
+            .contact-container {
+                padding: 25px 15px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contact-container">
+        <h1>Contact Support</h1>
+        <p class="subtitle">Have a serious issue, business inquiry, or critical value feedback? Follow the steps below to reach us directly through our official community hub.</p>
+
+        <!-- خطوات التواصل الصارمة لمنع الفوضى -->
+        <div class="steps-wrapper">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-text">
+                    <h3>Join our Discord Server</h3>
+                    <p>Click the button below to join the official community server.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-text">
+                    <h3>Complete Verification</h3>
+                    <p>Follow the server's onboarding steps to verify your account and unlock channels.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-text">
+                    <h3>Open a Ticket or DM Owner</h3>
+                    <p>Navigate to the support section to open a formal ticket or directly message the Owner for high-priority inquiries.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- زر الديسكورد الأنيق ومدمج معه أيقونة الديسكورد الرسمية SVG -->
+        <a href="https://discord.gg/zU2vV78j2F" target="_blank" class="btn-discord">
+            <svg viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.4-5c.87-.64,1.71-1.32,2.51-2a75.7,75.7,0,0,0,72.6,0c.8.71,1.64,1.39,2.51,2a68.44,68.44,0,0,1-10.4,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31-18.83C129.91,50.2,123.81,27.31,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z"/></svg>
+            Join Discord Server
+        </a>
+
+        <!-- صندوق التحذير للحد من الشحاتة والإزعاج العشوائي -->
+        <div class="warning-box">
+            <h4>⚠️ Important Notice</h4>
+            <p>We receive hundreds of requests daily. Please note that **begging, asking for free items, or spamming general support** will result in an immediate and permanent ban from both the Discord server and our website services. Keep it professional!</p>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="btn-back">⬅ Back to Calculator</a>
+        </div>
+    </div>
+
+</body>
+</html>
