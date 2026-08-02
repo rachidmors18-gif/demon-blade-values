@@ -1,56 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- الصفحة الرئيسية -->
+  <!-- الصفحة الرئيسية والحاسبة -->
   <url>
-    <loc>https://demon-blade-values.kesug.com/</loc>
-    <lastmod>2025-10-31</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://demon-blade-values.vercel.app/</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- صفحات BDA والقيم -->
+  <!-- صفحة اتصل بنا -->
   <url>
-    <loc>https://demon-blade-values.kesug.com/moon.html</loc>
-    <lastmod>2025-10-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://demon-blade-values.kesug.com/sun.html</loc>
-    <lastmod>2025-10-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://demon-blade-values.kesug.com/demon-art.html</loc>
-    <lastmod>2025-10-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://demon-blade-values.kesug.com/breathing.html</loc>
-    <lastmod>2025-10-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- صفحة اتصل بنا / معلومات إضافية -->
-  <url>
-    <loc>https://demon-blade-values.kesug.com/contact.html</loc>
-    <lastmod>2025-10-31</lastmod>
+    <loc>https://demon-blade-values.vercel.app/contact.html</loc>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- سياسة الخصوصية -->
   <url>
-    <loc>https://demon-blade-values.kesug.com/about.html</loc>
-    <lastmod>2025-10-31</lastmod>
+    <loc>https://demon-blade-values.vercel.app/privacy.html</loc>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- شروط الاستخدام -->
+  <url>
+    <loc>https://demon-blade-values.vercel.app/terms.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 
 </urlset>
