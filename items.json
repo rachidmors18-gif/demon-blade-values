@@ -18,7 +18,7 @@
   {
     "name": "Thunder 1",
     "value": 7500,
-    "img": "images/thunder.png",
+    "img": "images/thunder1.jpg",
     "category": "breathing",
     "demand": 1,
     "trend": "dropping"
