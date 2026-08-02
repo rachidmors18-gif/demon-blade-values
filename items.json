@@ -2,7 +2,7 @@
   {
     "name": "Water 1",
     "value": 5000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761772707/water1_zmkyu2.jpg",
+    "img": "images/water1.jpg",
     "category": "breathing",
     "demand": 0,
     "trend": "dropping"
@@ -10,7 +10,7 @@
   {
     "name": "Arrow",
     "value": 5000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761773221/arrow_cben5i.jpg",
+    "img": "images/arrow.jpg",
     "category": "demon",
     "demand": 0,
     "trend": "dropping"
@@ -18,7 +18,7 @@
   {
     "name": "Thunder 1",
     "value": 7500,
-    "img": "https://demon-blade-values.kesug.com/images-breathing/Thunder.png",
+    "img": "images/thunder1.png",
     "category": "breathing",
     "demand": 1,
     "trend": "dropping"
@@ -26,7 +26,7 @@
   {
     "name": "Stine",
     "value": 7500,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761773229/stine_iei433.jpg",
+    "img": "images/stine.jpg",
     "category": "demon",
     "demand": 1,
     "trend": "dropping"
@@ -34,7 +34,7 @@
   {
     "name": "Water 2",
     "value": 10000,
-    "img": "https://demon-blade-values.kesug.com/images-breathing/water2.png",
+    "img": "images/water2.png",
     "category": "breathing",
     "demand": 2,
     "trend": "dropping"
@@ -42,7 +42,7 @@
   {
     "name": "Flame",
     "value": 15000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761772705/flame_bcemkz.jpg",
+    "img": "images/flame.jpg",
     "category": "breathing",
     "demand": 2,
     "trend": "dropping"
@@ -50,7 +50,7 @@
   {
     "name": "Spider",
     "value": 10000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/spider.png",
+    "img": "images/spider.png",
     "category": "demon",
     "demand": 2,
     "trend": "dropping"
@@ -58,7 +58,7 @@
   {
     "name": "Nightmare",
     "value": 15000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761773227/nightmare_xa8smq.jpg",
+    "img": "images/nightmare.jpg",
     "category": "demon",
     "demand": 2,
     "trend": "dropping"
@@ -66,7 +66,7 @@
   {
     "name": "Beast",
     "value": 150000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761772705/beast_ahrfbn.jpg",
+    "img": "images/beast.jpg",
     "category": "breathing",
     "demand": 3,
     "trend": "stable"
@@ -74,7 +74,7 @@
   {
     "name": "Wind",
     "value": 3000000,
-    "img": "https://demon-blade-values.kesug.com/images-breathing/wind.png",
+    "img": "images/wind.png",
     "category": "breathing",
     "demand": 3,
     "trend": "stable"
@@ -82,7 +82,7 @@
   {
     "name": "Mist",
     "value": 3000000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761772706/mist_qkk3ga.jpg",
+    "img": "images/mist.jpg",
     "category": "breathing",
     "demand": 7,
     "trend": "stable"
@@ -90,7 +90,7 @@
   {
     "name": "love",
     "value": 2500000,
-    "img": "https://demon-blade-values.kesug.com/images-breathing/love.png",
+    "img": "images/love.png",
     "category": "breathing",
     "demand": 8,
     "trend": "stable"
@@ -98,7 +98,7 @@
   {
     "name": "Flower",
     "value": 1000000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761772706/flower_gqoxms.jpg",
+    "img": "images/flower.jpg",
     "category": "breathing",
     "demand": 5,
     "trend": "stable"
@@ -106,7 +106,7 @@
   {
     "name": "Insect",
     "value": 1500000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761772706/insect_nnera2.jpg",
+    "img": "images/insect.jpg",
     "category": "breathing",
     "demand": 6,
     "trend": "stable"
@@ -114,15 +114,15 @@
   {
     "name": "Thunder 2",
     "value": 4000000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761772707/thunder2_t0oezt.jpg",
+    "img": "images/thunder2.jpg",
     "category": "breathing",
     "demand": 8,
     "trend": "stable"
   },
-    {
+  {
     "name": "Flame 2",
     "value": 8000000,
-    "img": "https://demon-blade-values.kesug.com/images-breathing/flame2.png",
+    "img": "images/flame2.png",
     "category": "breathing",
     "demand": 8.5,
     "trend": "dropping"
@@ -130,7 +130,7 @@
   {
     "name": "Reaper",
     "value": 200000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761773228/reaper1_go9bou.jpg",
+    "img": "images/reaper1.jpg",
     "category": "demon",
     "demand": 4,
     "trend": "stable"
@@ -138,7 +138,7 @@
   {
     "name": "Element",
     "value": 1000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/element.jpg",
+    "img": "images/element.jpg",
     "category": "demon",
     "demand": 6,
     "trend": "stable"
@@ -146,7 +146,7 @@
   {
     "name": "Pot",
     "value": 300000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761773228/pot_isavfy.jpg",
+    "img": "images/pot.jpg",
     "category": "demon",
     "demand": 5,
     "trend": "stable"
@@ -154,7 +154,7 @@
   {
     "name": "Black thunder",
     "value": 800000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761773221/black_thunder_rywhvv.jpg",
+    "img": "images/black_thunder.jpg",
     "category": "demon",
     "demand": 5,
     "trend": "stable"
@@ -162,7 +162,7 @@
   {
     "name": "Bewitchment",
     "value": 1200000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761773221/bewitchment_mgqia2.jpg",
+    "img": "images/bewitchment.jpg",
     "category": "demon",
     "demand": 6,
     "trend": "stable"
@@ -170,7 +170,7 @@
   {
     "name": "Biwa",
     "value": 2000000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761773221/biwa_xtzdyo.jpg",
+    "img": "images/biwa.jpg",
     "category": "demon",
     "demand": 8,
     "trend": "stable"
@@ -178,7 +178,7 @@
   {
     "name": "Reaper 2",
     "value": 1500000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761773228/reaper2_dzkxwn.jpg",
+    "img": "images/reaper2.jpg",
     "category": "demon",
     "demand": 7,
     "trend": "stable"
@@ -186,7 +186,7 @@
   {
     "name": "Blood",
     "value": 7000000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761773222/blood_qrgsec.jpg",
+    "img": "images/blood.jpg",
     "category": "demon",
     "demand": 7,
     "trend": "stable"
@@ -194,7 +194,7 @@
   {
     "name": "Wolf",
     "value": 45000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/wolf2.png",
+    "img": "images/wolf2.png",
     "category": "demon",
     "demand": 8.5,
     "trend": "dropping"
@@ -202,7 +202,7 @@
   {
     "name": "Rock",
     "value": 15000000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761772706/rock_rm4tpp.jpg",
+    "img": "images/rock.jpg",
     "category": "breathing",
     "demand": 7,
     "trend": "stable"
@@ -210,7 +210,7 @@
   {
     "name": "Sound",
     "value": 30000000,
-    "img": "https://demon-blade-values.kesug.com/images-breathing/sound.png",
+    "img": "images/sound.png",
     "category": "breathing",
     "demand": 7,
     "trend": "stable"
@@ -218,7 +218,7 @@
   {
     "name": "Destroy",
     "value": 15000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/destroy.jpg",
+    "img": "images/destroy.jpg",
     "category": "demon",
     "demand": 8,
     "trend": "rising"
@@ -226,7 +226,7 @@
   {
     "name": "Serpent",
     "value": 30000000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761772706/serpent_vefho5.jpg",
+    "img": "images/serpent.jpg",
     "category": "breathing",
     "demand": 7,
     "trend": "dropping"
@@ -234,7 +234,7 @@
   {
     "name": "Serpent 2",
     "value": 300000000,
-    "img": "https://demon-blade-values.kesug.com/images-breathing/serpent2.png",
+    "img": "images/serpent2.png",
     "category": "breathing",
     "demand": 10,
     "trend": "rising"
@@ -242,7 +242,7 @@
   {
     "name": "Ice",
     "value": 65000000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761773222/ice_trrfmr.jpg",
+    "img": "images/ice.jpg",
     "category": "demon",
     "demand": 10,
     "trend": "stable"
@@ -250,7 +250,7 @@
   {
     "name": "Moon",
     "value": 550000000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761772706/moon_khqred.jpg",
+    "img": "images/moon.jpg",
     "category": "breathing",
     "demand": 10,
     "trend": "rising"
@@ -258,7 +258,7 @@
   {
     "name": "Sun",
     "value": 150000000,
-    "img": "https://res.cloudinary.com/dmzlyizfv/image/upload/v1761772707/sun_kwip6k.jpg",
+    "img": "images/sun.jpg",
     "category": "breathing",
     "demand": 8.5,
     "trend": "stable"
@@ -266,7 +266,7 @@
   {
     "name": "Sun 2",
     "value": 300000000,
-    "img": "https://demon-blade-values.kesug.com/images-breathing/sun2.jpg",
+    "img": "images/sun2.jpg",
     "category": "breathing",
     "demand": 10,
     "trend": "stable"
@@ -274,7 +274,7 @@
   {
     "name": "Demon King",
     "value": 280000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/demon-king.jpg",
+    "img": "images/demon-king.jpg",
     "category": "demon",
     "demand": 10,
     "trend": "rising"
@@ -282,7 +282,7 @@
   {
     "name": "lucky",
     "value": 220000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/950.png",
+    "img": "images/950.png",
     "category": "gamepasses",
     "demand": 8,
     "trend": "stable"
@@ -290,7 +290,7 @@
   {
     "name": "Mega lucky",
     "value": 3500000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/mega.png",
+    "img": "images/mega.png",
     "category": "gamepasses",
     "demand": 7,
     "trend": "stable"
@@ -298,7 +298,7 @@
   {
     "name": "Detector",
     "value": 1900000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/green.png",
+    "img": "images/green.png",
     "category": "gamepasses",
     "demand": 6,
     "trend": "stable"
@@ -306,7 +306,7 @@
   {
     "name": "Money x2",
     "value": 270000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/2x.png",
+    "img": "images/2x.png",
     "category": "gamepasses",
     "demand": 9,
     "trend": "stable"
@@ -314,7 +314,7 @@
   {
     "name": "Mastery x2",
     "value": 270000000,
-    "img": "https://demon-blade-values.kesug.com/images-breathing/3x.png",
+    "img": "images/3x.png",
     "category": "gamepasses",
     "demand": 9,
     "trend": "stable"
@@ -322,7 +322,7 @@
   {
     "name": "Race Extractor",
     "value": 120000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/race.png",
+    "img": "images/race.png",
     "category": "gamepasses",
     "demand": 7,
     "trend": "stable"
@@ -330,7 +330,7 @@
   {
     "name": "Recovery",
     "value": 140000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/red.png",
+    "img": "images/red.png",
     "category": "gamepasses",
     "demand": 6,
     "trend": "stable"
@@ -338,7 +338,7 @@
   {
     "name": "X2 Drop",
     "value": 270000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/x4.png",
+    "img": "images/x4.png",
     "category": "gamepasses",
     "demand": 9,
     "trend": "stable"
@@ -346,7 +346,7 @@
   {
     "name": "Fast Carriage",
     "value": 150000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/fost.png",
+    "img": "images/fost.png",
     "category": "gamepasses",
     "demand": 6,
     "trend": "stable"
@@ -354,7 +354,7 @@
   {
     "name": "Storage",
     "value": 300000000,
-    "img": "https://demon-blade-values.kesug.com/images-breathing/storage.png",
+    "img": "images/storage.png",
     "category": "gamepasses",
     "demand": 10,
     "trend": "stable"
@@ -362,47 +362,47 @@
   {
     "name": "Perm Biwa",
     "value": 900000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/p-biwa.png",
+    "img": "images/p-biwa.png",
     "category": "gamepasses",
     "demand": 7,
     "trend": "stable"
   },
-    {
+  {
     "name": "Perm Blood",
     "value": 1200000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/p-blood.png",
+    "img": "images/p-blood.png",
     "category": "gamepasses",
     "demand": 5,
     "trend": "stable"
   },
-    {
+  {
     "name": "Perm Wolf",
     "value": 1300000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/p-wolf.png",
+    "img": "images/p-wolf.png",
     "category": "gamepasses",
     "demand": 5,
     "trend": "stable"
   },
-    {
+  {
     "name": "Perm Rock",
     "value": 1200000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/p-rock.png",
+    "img": "images/p-rock.png",
     "category": "gamepasses",
     "demand": 5,
     "trend": "stable"
   },
-    {
+  {
     "name": "Perm Destroy",
     "value": 1200000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/p-destroy.png",
+    "img": "images/p-destroy.png",
     "category": "gamepasses",
     "demand": 5,
     "trend": "stable"
   },
-    {
+  {
     "name": "Perm Serpent 1",
     "value": 3000000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/p-serpent.png",
+    "img": "images/p-serpent.png",
     "category": "gamepasses",
     "demand": 5,
     "trend": "stable"
@@ -410,7 +410,7 @@
   {
     "name": "Perm Sound",
     "value": 1300000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/p-sound.png",
+    "img": "images/p-sound.png",
     "category": "gamepasses",
     "demand": 5,
     "trend": "stable"
@@ -418,7 +418,7 @@
   {
     "name": "Perm Ice",
     "value": 1500000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/p-ice.png",
+    "img": "images/p-ice.png",
     "category": "gamepasses",
     "demand": 9,
     "trend": "stable"
@@ -426,7 +426,7 @@
   {
     "name": "Perm Moon",
     "value": 2700000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/p-moon.png",
+    "img": "images/p-moon.png",
     "category": "gamepasses",
     "demand": 9,
     "trend": "stable"
@@ -434,7 +434,7 @@
   {
     "name": "Perm Demon King",
     "value": 2000000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/p-dk.png",
+    "img": "images/p-dk.png",
     "category": "gamepasses",
     "demand": 10,
     "trend": "stable"
@@ -442,7 +442,7 @@
   {
     "name": "Perm Sun",
     "value": 2300000000,
-    "img": "https://demon-blade-values.kesug.com/images-bda/p-sun.png",
+    "img": "images/p-sun.png",
     "category": "gamepasses",
     "demand": 8,
     "trend": "stable"
@@ -450,7 +450,7 @@
   {
     "name": "Perm Sun 2",
     "value": 2500000000,
-    "img": "https://demon-blade-values.kesug.com/images-breathing/p-sun2.png",
+    "img": "images/p-sun2.png",
     "category": "gamepasses",
     "demand": 10,
     "trend": "stable"
@@ -458,7 +458,7 @@
   {
     "name": "Perm Serpent 2",
     "value": 3000000000,
-    "img": "https://demon-blade-values.kesug.com/images-breathing/p-serpent2.png",
+    "img": "images/p-serpent2.png",
     "category": "gamepasses",
     "demand": 10,
     "trend": "stable"
