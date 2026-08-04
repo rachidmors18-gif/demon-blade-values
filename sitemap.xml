@@ -4,7 +4,7 @@
   <!-- الصفحة الرئيسية والحاسبة -->
   <url>
     <loc>https://demon-blade-values.vercel.app/</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-08-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,7 +12,7 @@
   <!-- صفحة اتصل بنا -->
   <url>
     <loc>https://demon-blade-values.vercel.app/contact.html</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -20,7 +20,7 @@
   <!-- سياسة الخصوصية -->
   <url>
     <loc>https://demon-blade-values.vercel.app/privacy.html</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -28,7 +28,7 @@
   <!-- شروط الاستخدام -->
   <url>
     <loc>https://demon-blade-values.vercel.app/terms.html</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
