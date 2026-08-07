@@ -173,7 +173,7 @@ function updateTotals() {
     if (pt === 0 && ot === 0) {
         statusTitle.textContent = "-";
         statusDiff.textContent = "Add items";
-        statusBox.style.borderColor = "#253b73"; // تحديث اللون هنا أيضاً للتناسق
+        statusBox.style.borderColor = "#162447";
         statusBox.style.boxShadow = "0 4px 10px rgba(0,0,0,0.5)";
         return;
     }
@@ -224,24 +224,22 @@ function createSortButtons() {
         { label: "Game Pass & Perms", key: "gamepasses" }
     ];
 
-    if (sortButtonsContainer) {
-        sortButtonsContainer.innerHTML = "";
-        types.forEach(t => {
-            const btn = document.createElement("button");
-            btn.textContent = t.label;
-            btn.dataset.sort = t.key;
-            btn.style.cssText = "flex:1; padding:5px; border-radius:6px; border:1px solid #ffdf5d; background:#253b73; color:white; cursor:pointer;";
-            btn.addEventListener('click', () => {
-                let filtered = [];
-                if (t.key === "all") filtered = items;
-                else if (t.key === "breathing") filtered = items.filter(i => i.category.toLowerCase() === "breathing");
-                else if (t.key === "demon") filtered = items.filter(i => i.category.toLowerCase() === "demon");
-                else if (t.key === "gamepasses") filtered = items.filter(i => i.category.toLowerCase().includes("gamepasses"));
-                renderItems(filtered);
-            });
-            sortButtonsContainer.appendChild(btn);
+    sortButtonsContainer.innerHTML = "";
+    types.forEach(t => {
+        const btn = document.createElement("button");
+        btn.textContent = t.label;
+        btn.dataset.sort = t.key;
+        btn.style.cssText = "flex:1; padding:5px; border-radius:6px; border:1px solid #ffdf5d; background:#162447; color:white; cursor:pointer;";
+        btn.addEventListener('click', () => {
+            let filtered = [];
+            if (t.key === "all") filtered = items;
+            else if (t.key === "breathing") filtered = items.filter(i => i.category.toLowerCase() === "breathing");
+            else if (t.key === "demon") filtered = items.filter(i => i.category.toLowerCase() === "demon");
+            else if (t.key === "gamepasses") filtered = items.filter(i => i.category.toLowerCase().includes("gamepasses"));
+            renderItems(filtered);
         });
-    }
+        sortButtonsContainer.appendChild(btn);
+    });
 }
 
 // تحويل الأرقام
@@ -268,21 +266,5 @@ if (clearTradeBtn) {
         updateTotals();
     });
 }
-
-// كود الشريط الجانبي (Sidebar Toggle)
-document.addEventListener('DOMContentLoaded', () => {
-    const toggleBtn = document.getElementById('sidebarToggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebarOverlay');
-
-    if (toggleBtn && sidebar && overlay) {
-        function toggleMenu() {
-            toggleBtn.classList.toggle('active');
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
-
-        toggleBtn.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
     }
 });
