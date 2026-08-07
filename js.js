@@ -273,7 +273,20 @@ clearTradeBtn.addEventListener("click", () => {
         delete slot.dataset.demand;
         delete slot.dataset.trend;
     });
-    
+    document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.getElementById('sidebarToggle');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+
+  function toggleMenu() {
+    toggleBtn.classList.toggle('active');
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+  }
+
+  toggleBtn.addEventListener('click', toggleMenu);
+  overlay.addEventListener('click', toggleMenu);
+});
     // استدعاء دالة التحديث لإعادة الأرقام والألوان لحالة الصفر
     updateTotals();
 });
