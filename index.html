@@ -10,7 +10,6 @@
 <link rel="icon" type="image/png" href="/images/favicon.png">
 <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
 <link rel="apple-touch-icon" href="/images/favicon.png">
-
   
 <meta name="description" content="Updated Demon Blade Trading Values 2026 — Compare Breathing Styles & Demon Arts (BDA) values easily to know the best trade for you. Track Demon Blade trading, Moon, Sun, and all item values in Demon Blade.">
 <meta name="keywords" content="demon blade values, values list demon blade, breathing and bda demon blade, demon blade, demon blade trade value calculator, demon blade tier list, demon blade trading value, value list demon blade, values of demon blade breathings, demon blade value">
@@ -61,10 +60,546 @@
   "description": "Compare and track Demon Blade trading values — Breathing Styles & Demon Arts (BDA). Find Moon, Sun, and all item values for Roblox. Updated 2026."
 }
 </script>
+<style>
+body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: white; display: flex; flex-direction: column; align-items: center; margin: 0; padding: 20px; min-height: 100vh; }
+.container {
+    display: flex;
+    justify-content: center; /* توسيط العناصر بدلاً من space-between */
+    flex-wrap: wrap;       /* للسماح للعناصر بالنزول لسطر جديد عند ضيق المساحة */
+    width: 95%;           /* زيادة العرض قليلاً في الشاشات الصغيرة */
+    max-width: 1200px;
+    margin: 50px auto;
+    gap: 20px;
+}
 
-<!-- ربط ملف CSS -->
-<link rel="stylesheet" href="css.css">
+/* تحديثات الـ Column لإضافة الحواف التفاعلية */
+.column { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    background-color: #0f1626; 
+    padding: 15px; 
+    border-radius: 15px; 
+    flex: 1; /* جعل العمود يأخذ مساحة متساوية */
+    min-width: 320px; /* ضمان عدم صغر العمود عن حجم الشبكة */
+    max-width: 450px; /* تحديد أقصى عرض ليبقى التصميم متوازناً */ }
 
+.title { font-size: 1.5rem; font-weight: bold; margin-bottom: 10px; }
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 10px; 
+    width: 100%; /* أساسي لمنع انكماش السلوتات الفارغة وظهورها بكامل حجمها */
+    box-sizing: border-box; }
+
+.slot { 
+    width: 100%;
+    aspect-ratio: 1 / 1.15; /* تم زيادة الطول قليلاً من 1.1 ليتسع للنص السفلي بالكامل */
+    background-color: #162447; 
+    border: 2px solid #0f1626; /* تم حذف الـ border المتقطع لمنح السلوت مظهراً نظيفاً */
+    border-radius: 12px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    position: relative; 
+    cursor: pointer; 
+    transition: all 0.25s ease-in-out; 
+    overflow: hidden; 
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    box-sizing: border-box; }
+    
+    .slot[data-item] {
+    border: 2px solid #ffdf5d;
+    background-color: #0f1626;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* لدفع شريط المعلومات ليلتصق بالأسفل بشكل نظيف */
+}
+    .item-info-bar {
+    width: 100%;
+    height: auto; /* ترك الارتفاع مرن بحسب النص بدلاً من النسبة المئوية القاسية */
+    min-height: 28px; /* ضمان مساحة حد أدنى لا تنكمش */
+    flex-shrink: 0; /* منع المتصفح من سحق أو تصغير هذا الشريط نهائياً على الهاتف */
+    background: #0b111e; 
+    border-top: 1px solid #ffdf5d33;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 1px;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.slot:hover { transform: scale(1.05); background-color: #1b2a44; }
+.plus { font-size: 2rem; color: white; }
+.item-name { 
+    color: #ffffff;
+    font-size: clamp(0.55rem, 2.2vw, 0.75rem); /* رفعنا قيمة الـ vw لضمان وضوح الخط على الهاتف */
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    width: 95%;}
+.item-value {
+    color: #ffdf5d; 
+    font-size: clamp(0.5rem, 2vw, 0.7rem); /* رفعنا الحد الأدنى المرن */
+    font-weight: 600;
+    margin-top: 1px;
+    line-height: 1;
+}
+
+.item-image { 
+    width: 90%; 
+    height: 55%; /* تقليل النسبة المئوية الافتراضية لمنع الصورة من دفع النص لأسفل */
+    object-fit: contain; 
+    margin: auto auto 2px auto; /* تمركز تلقائي ذكي يترك مساحة للنصوص والمؤشرات */
+    z-index: 1; 
+}
+
+/* ------------------------------------------- */
+/* أنماط صندوق الحالة (Trade Status Box)       */
+/* ------------------------------------------- */
+#tradeStatusBox {
+    background-color: #0f1626;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    border: 2px solid #162447;
+    min-width: 160px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+/* تنسيقات الحاوية الوسطى والزر الجديد */
+.center-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* المسافة بين الصندوق والزر */
+}
+
+#clearTradeBtn {
+    background-color: #b32424;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+}
+
+#clearTradeBtn:hover {
+    background-color: #ff3333;
+    box-shadow: 0 0 12px rgba(255, 51, 51, 0.5);
+    transform: scale(1.05); /* تأثير حركي خفيف يتماشى مع باقي الموقع */
+}
+
+/* تعديل الـ Responsive ليتماشى مع الحاوية الجديدة */
+@media screen and (max-width: 900px) {
+    .center-column { width: 100%; margin: 10px 0; }
+    #tradeStatusBox { width: 100%; margin: 0; }
+}
+#statusTitle {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+#statusDiff {
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 600;
+}
+
+/* ------------------------------------------- */
+/* فئات تأثيرات الإضاءة (Glow Effects)         */
+/* ------------------------------------------- */
+.glow-win { box-shadow: 0 0 25px rgba(0, 255, 0, 0.5) !important; border-color: #00ff00 !important; }
+.glow-lose { box-shadow: 0 0 25px rgba(255, 76, 76, 0.5) !important; border-color: #ff4c4c !important; }
+.glow-fair { box-shadow: 0 0 25px rgba(255, 223, 93, 0.4) !important; border-color: #ffdf5d !important; }
+
+/* ------------------------------------------- */
+/* مؤشرات الطلب والاتجاه (Demand & Trend)      */
+/* ------------------------------------------- */
+.item-indicators {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 8px);
+    z-index: 10;
+}
+.demand-badge {
+    background: rgba(0, 0, 0, 0.75);
+    color: #ffdf5d;
+    padding: 1px 4px;
+    border-radius: 4px;
+    font-size: clamp(0.45rem, 1.2vw, 0.6rem); /* حجم مرن جداً */
+    font-weight: bold;
+}
+
+.trend-badge {
+    background: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.total { margin-top:10px; font-size:1.1rem; font-weight:bold; color:#ffdf5d; }
+#commentsSection { 
+    width: 95%; 
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #0f1626; 
+    border: 1px solid #ffdf5d33; 
+    border-radius: 18px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+
+    /* التعديل الجوهري هنا لترتيب المحتوى داخله عمودياً */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+ }   
+ .boxes-wrapper {
+    display: flex;
+    flex-direction: row; /* يظهران بجانب بعضهما */
+    justify-content: center;
+    align-items: stretch; /* لتوحيد الارتفاع تلقائياً لمظهر متناسق */
+    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+ }
+
+/* ------------------------------------------- */
+/* المودال وقوائمه                             */
+/* ------------------------------------------- */
+.modal { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); display: flex; justify-content: center; align-items: center; z-index: 300; padding: 20px; overflow-y: auto; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+.modal.active { opacity: 1; pointer-events: auto; }
+.modal.closing { opacity: 0; pointer-events: none; }
+.modal-content { width: 95%; max-width: 900px; max-height: 70vh; background: linear-gradient(145deg, #0f1626, #121b33); border-radius: 18px; padding: 15px; overflow-y: auto; box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); border: 2px solid #ffdf5d; display: flex; flex-direction: column; opacity: 0; transform: translateY(60px); transition: opacity 0.35s ease, transform 0.35s ease; }
+.modal.active .modal-content { opacity: 1; transform: translateY(0); }
+.modal.closing .modal-content { opacity: 0; transform: translateY(60px); }
+.modal-header { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
+.search-container { 
+    display: flex; 
+    align-items: center; /* لضمان توسط المدخل والأيقونة عمودياً */
+    width: 100%; 
+    max-width: 400px; /* تحديد أقصى عرض للشريط ليحتوي الـ X وينتهي بعدها بقليل */
+    background: #162447; 
+    border-radius: 10px; 
+    padding: 6px 12px; 
+    border: 1px solid #ffdf5d; 
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.5); 
+    box-sizing: border-box; }
+.search-input { flex: 1; background: transparent; border: none; color: #fff; outline: none; padding: 0; font-size: 1rem; }
+.close-btn {
+    background: transparent; 
+    border: none; 
+    color: #fff; 
+    cursor: pointer; 
+    font-size: 1.1rem; 
+    padding: 0 4px;
+    margin-left: 10px; 
+    display: flex;
+    align-items: center;
+    transition: color 0.2s; }
+    .close-btn:hover { color: #ff4c4c; }
+    
+.sort-bar button { transition: all 0.2s; }
+.sort-bar button:hover { transform: scale(1.05); box-shadow: 0 0 8px rgba(255,215,0,0.6); }
+.available-items-section { background: #0f1626;  padding: 10px; border-radius: 12px; }
+.available-items-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid #ffdf5d; }
+.available-items-header span { font-weight: 700; color: #fff; }
+.available-items-header .item-count { color: #ffdf5d; font-size: 0.85rem; }
+.modal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); gap: 30px 18px; justify-items: center; }
+
+/* تعديل العنصر داخل المودال ليحمل المؤشرات */
+.modal-item { background: linear-gradient(145deg, #162447, #1b2a44); border-radius: 10px; padding: 4px; text-align: center; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 2px 6px rgba(255, 215, 0, 0.25); border: 1px solid #ffdf5d; width: 100%; box-sizing: border-box; position: relative; overflow: hidden; }
+.modal-item:hover { transform: scale(1.05); box-shadow: 0 0 12px rgba(255, 215, 0, 0.6); }
+.modal-item img { width: 100%; height: 75px; object-fit: contain; border-radius: 5px; border-bottom: 1px solid #ffdf5d; }
+.modal-item .item-name { margin-top: 3px; font-size: 0.75rem; font-weight: bold; color: #fff; }
+.modal-item .item-value { font-size: 0.7rem; color: #ffdf5d; margin-top: 1px; }
+
+.modal-content::-webkit-scrollbar { width: 1px; height:1px; }
+.modal-content::-webkit-scrollbar-thumb { background-color: #ffdf5d; border-radius: 10px; }
+.modal-content::-webkit-scrollbar-track { background: #162447; }
+
+/* Updates and Discord Boxes */
+.updates-box, .discord-box { 
+
+    flex: 1; 
+    min-width: 280px; 
+    max-width: 550px; 
+    background-color: #162447; 
+    border-radius: 12px; 
+    padding: 20px 20px 10px 20px; /* تقليص الـ padding السفلي الثابت إلى 10px ليسمح بالانكماش للأعلى */
+    color: #fff; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* يضمن دفع المحتويات للأعلى وتقلص الصندوق بدقة */
+    height: fit-content; /* يجعل ارتفاع الصندوق يتبع النص الداخلي فقط فيتقلص للأعلى تلقائياً */
+    }
+
+.updates-box { background: #2b2b2b; border-left: 5px solid #ffeb3b; }
+.discord-box { background: #2b2b2b; border-left: 5px solid #4fc3f7; }
+.discord-box a { display: inline-block; background: #5865F2; color: #ffffff; text-decoration: none; font-weight: bold; padding: 10px ; border-radius: 6px; transition: transform 0.2s, box-shadow 0.2s; font-size: 0.8rem; white-space: nowrap; box-sizing: border-box; }
+.discord-box a:hover { transform: scale(1.05); box-shadow: 0 0 8px rgba(255,255,255,0.6); }
+@media screen and (max-width: 900px) {
+  .container { flex-direction: column; align-items: center; }
+  #tradeStatusBox { width: 100%; margin: 10px 0; }
+}
+@media screen and (max-width: 700px) {
+  .updates-box, .discord-box { float: none; width: 100%; margin-right: 0; margin-bottom: 15px; }
+}
+.updates-box ul li { margin-bottom: 12px; }
+.updates-box ul li:last-child { margin-bottom: 10px; }
+.discord-box li { margin-left: 40px; margin-bottom: 12px; }
+.discord-box li:last-child { margin-bottom: 20px; }
+.join-discord-btn { display: block; clear: both; margin-top: 15px; }
+.discord-box a:last-child {
+    display: block; 
+    width: 100%; /* تحويله لعرض كامل متجاوب */
+    max-width: 240px; /* تحديد سقف لحجمه لكي لا يصبح ضخماً على الشاشات الكبيرة */
+    margin: 15px auto 5px auto; /* توسيط الزر تلقائياً في المنتصف وحذف الـ margin-left المسبب للمشكلة */
+    padding: 10px 12px; 
+    font-size: 1rem; 
+    background: #5865F2; 
+    color: #fff; 
+    text-decoration: none; 
+    font-weight: bold; 
+    border-radius: 10px; 
+    text-align: center; 
+    transition: transform 0.2s, box-shadow 0.2s; 
+    box-sizing: border-box;}
+.discord-box a:last-child:hover { transform: scale(1.05); box-shadow: 0 0 8px rgba(255,255,255,0.6); }
+.updates-box h3, .discord-box h3 {
+    margin-top: 5px;
+    margin-bottom: 8px; /* تقليل الفراغ أسفل العنوان */
+}    
+
+#refreshNotice { 
+    background: rgba(255, 50, 50, 0.15); 
+    border: 2px solid #ff4c4c; 
+    color: #ff4c4c; 
+    font-weight: bold; 
+    text-align: center; 
+    padding: 10px 20px; /* زيادة الحشو الجانبي لمنع الالتصاق */
+    border-radius: 12px; 
+    margin-bottom: 5px; 
+    font-size: 1.1rem; 
+    box-shadow: 0 0 10px rgba(255, 50, 50, 0.4); 
+    animation: pulseColor 7s infinite; 
+    align-self: center; /* جعل الحاوية تتقلص لتناسب حجم النص فقط وتتوسط الصفحة */
+    width: fit-content; /* للتأكد من ملاءمة العرض لمحتواه في جميع المتصفحات */
+}
+
+@keyframes pulseColor { 0% { box-shadow: 0 0 6px rgba(255, 50, 50, 0.5); transform: scale(1); border-color:#ff4c4c; } 50% { box-shadow: 0 0 20px rgba(255,150,50,0.9); transform: scale(1.05); border-color:#ff9933; } 100% { box-shadow: 0 0 6px rgba(255, 50, 50, 0.5); transform: scale(1); border-color:#ff4c4c; } }
+#commentNotice { 
+    background: #162447; 
+    border-radius: 10px; 
+    padding: 10px 20px; /* زيادة الحشو الجانبي */
+    text-align: center; 
+    font-weight: bold; 
+    color: #ffdf5d; 
+    font-size: 1.1rem; 
+    margin-bottom: 15px; 
+    align-self: center; /* تجعله يتقلص لعرض النص فقط ويتوسط الصفحة */
+    width: fit-content;
+ }
+#commentsSection::after { content: ""; display: table; clear: both; }
+
+/* 1. الحاوية الأساسية لتنظيم العناصر بجانب بعضها */
+.footer-container {
+    display: flex;
+    justify-content: center; /* توسيط المحتوى */
+    flex-wrap: wrap;       /* للسماح للعناصر بالنزول لسطر عند ضيق الشاشة */
+    width: 95%;
+    max-width: 1200px;
+    margin: 40px auto;
+    gap: 30px;
+     
+}
+
+/* 2. تنسيق صندوق المعلومات الجديد الصغير */
+.info-section {
+    flex: 1.2; /* تم تقليله من 2 إلى 1.2 لكي ينكمش ولا يسرق الانتباه مقارنة بباقي الصناديق */
+    min-width: 300px;
+    padding: 18px;
+    background-color: #0b111e;
+    border-radius: 12px;
+    border: 1px solid #bfa36855; /* جعلنا الحواف أقل حدة في الإضاءة */
+    line-height: 1.5;
+    color: #b3b3b3; /* تفتيح خفيف للون النص ليكون مريحاً وأقل جلباً للانتباه */
+    box-sizing: border-box;
+    font-size: 0.9rem; /* تصغير الخط العام للصندوق قليلاً */
+}
+    .indicator-explain {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #fff;
+    font-family: monospace;
+}
+.info-section h2 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.info-section h3 {
+    font-size: 0.95rem;
+    color: #fff;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+.info-section ul {
+    padding-left: 20px;
+    margin-bottom: 12px;
+}
+
+.info-section li {
+    margin-bottom: 4px;
+}
+
+.disclaimer {
+    font-size: 0.7rem;
+    color: #444; 
+    margin-top: 15px;
+    border-top: 1px dashed #222c3c;
+    padding-top: 8px;
+    line-height: 1.4;
+}
+
+/* 3. تنسيق الـ site-footer الصاعد لليمين بحدوده الفاصلة */
+.site-footer {
+    flex: 1; /* يأخذ المساحة المتبقية بجانب الصندوق */
+    text-align: left; /* محاذاة مرنة، يمكنك تركها right إن كنت تفضل ذلك */
+    font-size: 12px;
+    color: #666;
+    padding: 20px;
+    border-top: none; /* ألغينا الحد العلوي الافتراضي لاعتماده كعمود جانبي الآن */
+    min-width: 250px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* لتوسيط المحتوى عمودياً بالتوازي مع الصندوق */
+}
+
+.footer-links a {
+    color: #888;
+    text-decoration: none;
+    margin: 0 5px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+/* 4. تعديل التجاوب للتأكد من أن شكلها بالجوال يبدو ممتازاً */
+/* 4. تعديل التجاوب للتأكد من أن شكلها بالجوال يبدو ممتازاً */
+@media screen and (max-width: 900px) {
+    .footer-container {
+        flex-direction: column; 
+        align-items: stretch; /* لجعل العناصر تأخذ كامل العرض المتاح بشكل متناسق */
+        gap: 20px;
+    }
+    .info-section {
+        width: 100%;
+    }
+    .site-footer {
+        text-align: center; 
+        width: 100%;
+        border-top: 1px solid #222; /* إضافة خط فاصل فقط عند التحول للوضع الرأسي بالجوال */
+        padding-top: 20px;
+    }
+}
+/* تنسيق حاوية الإعلان العلوي */
+.adsterra-top-banner {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 0 15px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.ad-label-global {
+    display: block;
+    font-size: 11px;
+    color: #555;
+    margin-bottom: 6px;
+    text-align: left;
+    max-width: 728px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#adsterra-dynamic-container {
+    display: block;
+    width: 100%;
+    min-height: 50px; /* يعطي مساحة صغيرة مرنة لحين تحميل الإعلان */
+}
+
+/* تعديل المسافات في الجوال */
+@media (max-width: 768px) {
+    .adsterra-top-banner {
+        margin: 10px auto;
+    }
+    .ad-label-global {
+        max-width: 320px;
+    }
+}
+    /* تنسيق إعلان الـ Native السفلي */
+.adsterra-native-bottom {
+    margin: 30px auto;
+    max-width: 1200px; /* ليتماشى مع عرض محتوى موقعك بالكامل */
+    padding: 20px 15px;
+    background: #141421; /* لون خلفية داكن وناعم جداً ملائم للون الإعلانات والصفحة */
+    border-radius: 12px; /* زوايا منحنية أنيقة */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* ظل خفيف لإبراز الحاوية */
+    box-sizing: border-box;
+}
+
+/* تسمية الإعلان */
+.ad-label-global {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 12px;
+    text-align: right; /* لتتناسب مع اتجاه الكتابة العربية في موقعك */
+    font-family: sans-serif;
+}
+
+/* ضبط التباعد على الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .adsterra-native-bottom {
+        margin: 15px 10px;
+        padding: 15px 10px;
+    }
+}
+</style>
 </head>
 <body>
 
@@ -167,8 +702,287 @@
 
 </div>
 
-<!-- ربط ملف JavaScript -->
-<script src="js.js" defer></script>
+<script>
+let items = [];
+const params = new URLSearchParams(window.location.search);
+
+// DOM Elements
+const playerGrid = document.getElementById("playerGrid");
+const opponentGrid = document.getElementById("opponentGrid");
+const playerTotal = document.getElementById("playerTotal");
+const opponentTotal = document.getElementById("opponentTotal");
+
+// Trade Status Box Elements
+const statusBox = document.getElementById("tradeStatusBox");
+const statusTitle = document.getElementById("statusTitle");
+const statusDiff = document.getElementById("statusDiff");
+const playerCol = document.getElementById("player");
+const opponentCol = document.getElementById("opponent");
+
+const modal = document.getElementById("itemModal");
+const modalItems = document.getElementById("modalItems");
+const searchInput = document.getElementById("searchInput");
+const closeModal = document.getElementById("closeModal");
+const itemCountEl = document.querySelector(".item-count");
+const sortButtonsContainer = document.querySelector('.sort-bar');
+
+const playerSlots = [];
+const opponentSlots = [];
+let currentSlot = null;
+
+// تحميل البيانات من JSON
+fetch('items.json')
+    .then(r => r.json())
+    .then(d => {
+        items = d;
+        createSlotsUI();
+        createSortButtons();
+    })
+    .catch(err => console.error(err));
+
+// إنشاء الـ Slots
+function createSlotsUI() {
+    createSlots(playerGrid, playerSlots);
+    createSlots(opponentGrid, opponentSlots);
+}
+
+function createSlots(grid, arr) {
+    grid.innerHTML = "";
+    for (let i = 0; i < 12; i++) {
+        const slot = document.createElement("div");
+        slot.classList.add("slot");
+        slot.innerHTML = '<div class="plus">+</div>';
+        grid.appendChild(slot);
+        arr.push(slot);
+
+        slot.addEventListener("click", e => {
+            e.stopPropagation();
+            if (slot.dataset.item) {
+                slot.innerHTML = '<div class="plus">+</div>';
+                delete slot.dataset.item;
+                delete slot.dataset.value;
+                delete slot.dataset.demand;
+                delete slot.dataset.trend;
+                updateTotals();
+            } else {
+                openModal(slot);
+            }
+        });
+    }
+}
+
+// فتح المودال
+function openModal(slot) {
+    currentSlot = slot;
+    searchInput.value = "";
+    renderItems(items);
+    modal.style.display = "flex";
+    requestAnimationFrame(() => {
+        modal.classList.add('active');
+        modal.classList.remove('closing');
+    });
+}
+
+closeModal.onclick = () => {
+    modal.classList.add('closing');
+    modal.classList.remove('active');
+    setTimeout(() => modal.style.display = "none", 350);
+};
+
+modal.onclick = e => {
+    if (e.target === modal) {
+        modal.classList.add('closing');
+        modal.classList.remove('active');
+        setTimeout(() => modal.style.display = "none", 350);
+    }
+};
+
+// تحويل حالة الـ Trend إلى أيقونة (سهم)
+function getTrendIcon(trend) {
+    if(trend === "rising") return "<span style='color:#00ff00; font-size:0.8rem;'>⬆️</span>";
+    if(trend === "dropping") return "<span style='color:#ff4c4c; font-size:0.8rem;'>⬇️</span>";
+    return "<span style='color:#7bc4ff; font-size:0.8rem;'>➡️</span>"; // stable
+}
+
+// عرض العناصر داخل المودال (مُحدثة بالطلب والاتجاه)
+function renderItems(list) {
+    modalItems.innerHTML = "";
+    itemCountEl.textContent = list.length;
+
+    list.forEach(it => {
+        const div = document.createElement("div");
+        div.className = "modal-item";
+        
+        // التحقق من وجود القيم احتياطياً
+        const itemDemand = it.demand || 0;
+        const itemTrend = it.trend || "stable";
+
+        div.innerHTML = `
+            <div class="item-indicators">
+                <div class="demand-badge">🔥 ${itemDemand}/10</div>
+                <div class="trend-badge">${getTrendIcon(itemTrend)}</div>
+            </div>
+            <img src="${it.img}">
+            <div class="item-name">${it.name}</div>
+            <div class="item-value">${formatNumber(it.value)}</div>
+        `;
+        div.onclick = () => {
+            selectItem(currentSlot, it);
+            modal.classList.add('closing');
+            modal.classList.remove('active');
+            setTimeout(() => modal.style.display = "none", 350);
+        };
+        modalItems.appendChild(div);
+    });
+}
+
+function selectItem(slot, it) {
+    const itemDemand = it.demand || 0;
+    const itemTrend = it.trend || "stable";
+
+    slot.innerHTML = `
+        <img class="item-image" src="${it.img}">
+        <div class="item-indicators">
+            <div class="demand-badge">🔥 ${itemDemand}/10</div>
+            <div class="trend-badge">${getTrendIcon(itemTrend)}</div>
+        </div>
+        <div class="item-info-bar">
+            <div class="item-name">${it.name}</div>
+            <div class="item-value">${formatNumber(it.value)}</div>
+        </div>
+    `;
+    slot.dataset.item = it.name;
+    slot.dataset.value = it.value;
+    slot.dataset.demand = itemDemand;
+    slot.dataset.trend = itemTrend;
+    updateTotals();
+}
+
+// البحث
+searchInput.addEventListener("input", () => {
+    const v = searchInput.value.toLowerCase();
+    renderItems(items.filter(i => i.name.toLowerCase().includes(v)));
+});
+
+// الحسابات والمنطق الذكي (مُحدثة بالكامل)
+function updateTotals() {
+    const pt = playerSlots.reduce((a, v) => a + (parseInt(v.dataset.value) || 0), 0);
+    const ot = opponentSlots.reduce((a, v) => a + (parseInt(v.dataset.value) || 0), 0);
+    
+    playerTotal.textContent = `Total: ${formatNumber(pt)}`;
+    opponentTotal.textContent = `Total: ${formatNumber(ot)}`;
+
+    // إعادة تعيين الإضاءة
+    playerCol.classList.remove('glow-win', 'glow-lose', 'glow-fair');
+    opponentCol.classList.remove('glow-win', 'glow-lose', 'glow-fair');
+    statusTitle.style.color = 'white';
+
+    // حالة الصفر (لا توجد عناصر)
+    if (pt === 0 && ot === 0) {
+        statusTitle.textContent = "-";
+        statusDiff.textContent = "Add items";
+        statusBox.style.borderColor = "#162447";
+        statusBox.style.boxShadow = "0 4px 10px rgba(0,0,0,0.5)";
+        return;
+    }
+
+    const diff = ot - pt; // الفارق (إذا كان ot أكبر من pt، اللاعب يربح)
+    const absDiff = Math.abs(diff);
+    const maxTotal = Math.max(pt, ot);
+    
+    // تحديد نسبة العرض العادل (مثلاً الفارق أقل من 10% يعتبر عادلاً)
+    const isFair = absDiff <= (maxTotal * 0.1);
+
+    if (isFair) {
+        statusTitle.textContent = "FAIR";
+        statusTitle.style.color = "#ffdf5d"; // أصفر ذهبي
+        statusDiff.textContent = `Diff: ${diff === 0 ? '0' : (diff > 0 ? '+' : '-') + formatNumber(absDiff)}`;
+        
+        playerCol.classList.add('glow-fair');
+        opponentCol.classList.add('glow-fair');
+        statusBox.style.borderColor = "#ffdf5d";
+        statusBox.style.boxShadow = "0 0 20px rgba(255, 223, 93, 0.3)";
+    } 
+    else if (pt > ot) {
+        // اللاعب يدفع أكثر مما يأخذ -> خسارة
+        statusTitle.textContent = "LOSE";
+        statusTitle.style.color = "#ff4c4c"; // أحمر
+        statusDiff.textContent = `Diff: -${formatNumber(absDiff)}`;
+        
+        playerCol.classList.add('glow-lose');
+        opponentCol.classList.add('glow-win'); // الخصم هو المستفيد
+        statusBox.style.borderColor = "#ff4c4c";
+        statusBox.style.boxShadow = "0 0 20px rgba(255, 76, 76, 0.4)";
+    } 
+    else {
+        // اللاعب يأخذ أكثر مما يدفع -> فوز
+        statusTitle.textContent = "WIN";
+        statusTitle.style.color = "#00ff00"; // أخضر
+        statusDiff.textContent = `Diff: +${formatNumber(absDiff)}`;
+        
+        playerCol.classList.add('glow-win');
+        opponentCol.classList.add('glow-lose'); // الخصم هو الخاسر
+        statusBox.style.borderColor = "#00ff00";
+        statusBox.style.boxShadow = "0 0 20px rgba(0, 255, 0, 0.4)";
+    }
+}
+
+// أزرار التصنيف
+function createSortButtons() {
+    const types = [
+        { label: "All", key: "all" },
+        { label: "Breathing", key: "breathing" },
+        { label: "Demon Art", key: "demon" },
+        { label: "Game Pass & Perms", key: "gamepasses" }
+    ];
+
+    sortButtonsContainer.innerHTML = "";
+    types.forEach(t => {
+        const btn = document.createElement("button");
+        btn.textContent = t.label;
+        btn.dataset.sort = t.key;
+        btn.style.cssText = "flex:1; padding:5px; border-radius:6px; border:1px solid #ffdf5d; background:#162447; color:white; cursor:pointer;";
+        btn.addEventListener('click', () => {
+            let filtered = [];
+            if (t.key === "all") filtered = items;
+            else if (t.key === "breathing") filtered = items.filter(i => i.category.toLowerCase() === "breathing");
+            else if (t.key === "demon") filtered = items.filter(i => i.category.toLowerCase() === "demon");
+            else if (t.key === "gamepasses") filtered = items.filter(i => i.category.toLowerCase().includes("gamepasses"));
+            renderItems(filtered);
+        });
+        sortButtonsContainer.appendChild(btn);
+    });
+}
+
+// تحويل الأرقام
+function formatNumber(num) {
+    if (num >= 1_000_000_000) return (num / 1_000_000_000).toFixed(1).replace(/\.0$/, '') + 'B';
+    if (num >= 1_000_000) return (num / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (num >= 1_000) return (num / 1_000).toFixed(1).replace(/\.0$/, '') + 'K';
+    return num.toString();
+}
+// زر تفريغ الحسبة
+const clearTradeBtn = document.getElementById("clearTradeBtn");
+
+clearTradeBtn.addEventListener("click", () => {
+    // دمج مصفوفتي اللاعب والخصم لتسهيل التكرار
+    const allSlots = [...playerSlots, ...opponentSlots];
+    
+    allSlots.forEach(slot => {
+        // إعادة الشكل الافتراضي
+        slot.innerHTML = '<div class="plus">+</div>';
+        
+        // مسح جميع البيانات المخزنة
+        delete slot.dataset.item;
+        delete slot.dataset.value;
+        delete slot.dataset.demand;
+        delete slot.dataset.trend;
+    });
+    
+    // استدعاء دالة التحديث لإعادة الأرقام والألوان لحالة الصفر
+    updateTotals();
+});
+</script>
 
 </body>
 </html>
