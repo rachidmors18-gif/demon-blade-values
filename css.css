@@ -8,6 +8,133 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
     margin: 50px auto;
     gap: 20px;
 }
+/* ==========================================
+   Responsive Sidebar & Toggle Button (#162447)
+   ========================================== */
+
+/* زر الـ 3 شلاطات المطور */
+.sidebar-toggle {
+  position: fixed;
+  top: clamp(12px, 2vw, 24px);
+  right: clamp(12px, 2vw, 24px);
+  z-index: 1001;
+  background-color: #162447; /* اللون المطلوب */
+  border: none;
+  /* حجم متغير يتناسب مع الشاشة */
+  width: clamp(42px, 4vw, 54px);
+  height: clamp(42px, 4vw, 54px);
+  border-radius: clamp(8px, 1vw, 14px);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(4px, 0.4vw, 6px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+  background-color: #1f315c; /* درجة أفتح قليلاً عند تحريك الماوس عليه */
+}
+
+/* الشلاطات الثلاث باللون الأبيض الصافي */
+.sidebar-toggle span {
+  display: block;
+  width: clamp(20px, 2vw, 26px);
+  height: clamp(2.5px, 0.25vw, 3.5px);
+  background-color: #ffffff !important; /* لون ابيض ناصع */
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* دوران الزر 90 درجة عند النقر */
+.sidebar-toggle.active {
+  transform: rotate(90deg);
+}
+
+/* الشريط الجانبي بتنسيق تجاوبي */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: calc(-1 * clamp(250px, 25vw, 380px)); /* إخفاء بناءً على العرض المتغير */
+  /* العرض يتغير من 250px على الهواتف الصغيرة حتى 380px على الشاشات الضخمة */
+  width: clamp(250px, 25vw, 380px);
+  height: 100vh;
+  background-color: #162447; /* لون الشريط الرئيسي */
+  color: #ffffff;
+  z-index: 1000;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.4);
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  padding: clamp(70px, 8vw, 100px) clamp(16px, 2vw, 30px) 20px clamp(16px, 2vw, 30px);
+  box-sizing: border-box;
+}
+
+/* إظهار الشريط عند التفعيل */
+.sidebar.active {
+  right: 0;
+}
+
+.sidebar-header h3 {
+  margin-bottom: clamp(15px, 2vw, 30px);
+  font-size: clamp(1.1rem, 1.3vw, 1.5rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 12px;
+  color: #ffffff;
+}
+
+/* روابط القائمة */
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li {
+  margin-bottom: clamp(8px, 1vw, 14px);
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: clamp(10px, 1vw, 14px) clamp(12px, 1.2vw, 18px);
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+  font-weight: 500;
+  transition: background 0.25s, color 0.25s, transform 0.2s;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  transform: translateX(-5px); /* إزاحة خفيفة لليسار عند التمرير بالماوس */
+}
+
+/* طبقة الظلام المركزة على الصفحة */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* خفض إضاءة الخلفية مع تظليل ناعم وتأثير ضبابي خفيف */
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
 
 /* تحديثات الـ Column لإضافة الحواف التفاعلية */
 .column { 
