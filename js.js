@@ -99,7 +99,7 @@ function getTrendIcon(trend) {
     return "<span style='color:#7bc4ff; font-size:0.8rem;'>➡️</span>"; // stable
 }
 
-// عرض العناصر داخل المودال
+// عرض العناصر داخل المودال (مُحدثة بالطلب والاتجاه)
 function renderItems(list) {
     modalItems.innerHTML = "";
     itemCountEl.textContent = list.length;
@@ -108,6 +108,7 @@ function renderItems(list) {
         const div = document.createElement("div");
         div.className = "modal-item";
         
+        // التحقق من وجود القيم احتياطياً
         const itemDemand = it.demand || 0;
         const itemTrend = it.trend || "stable";
 
@@ -158,7 +159,7 @@ searchInput.addEventListener("input", () => {
     renderItems(items.filter(i => i.name.toLowerCase().includes(v)));
 });
 
-// الحسابات والمنطق الذكي
+// الحسابات والمنطق الذكي (مُحدثة بالكامل)
 function updateTotals() {
     const pt = playerSlots.reduce((a, v) => a + (parseInt(v.dataset.value) || 0), 0);
     const ot = opponentSlots.reduce((a, v) => a + (parseInt(v.dataset.value) || 0), 0);
@@ -166,10 +167,12 @@ function updateTotals() {
     playerTotal.textContent = `Total: ${formatNumber(pt)}`;
     opponentTotal.textContent = `Total: ${formatNumber(ot)}`;
 
+    // إعادة تعيين الإضاءة
     playerCol.classList.remove('glow-win', 'glow-lose', 'glow-fair');
     opponentCol.classList.remove('glow-win', 'glow-lose', 'glow-fair');
     statusTitle.style.color = 'white';
 
+    // حالة الصفر (لا توجد عناصر)
     if (pt === 0 && ot === 0) {
         statusTitle.textContent = "-";
         statusDiff.textContent = "Add items";
@@ -178,14 +181,16 @@ function updateTotals() {
         return;
     }
 
-    const diff = ot - pt;
+    const diff = ot - pt; // الفارق (إذا كان ot أكبر من pt، اللاعب يربح)
     const absDiff = Math.abs(diff);
     const maxTotal = Math.max(pt, ot);
+    
+    // تحديد نسبة العرض العادل (مثلاً الفارق أقل من 10% يعتبر عادلاً)
     const isFair = absDiff <= (maxTotal * 0.1);
 
     if (isFair) {
         statusTitle.textContent = "FAIR";
-        statusTitle.style.color = "#ffdf5d";
+        statusTitle.style.color = "#ffdf5d"; // أصفر ذهبي
         statusDiff.textContent = `Diff: ${diff === 0 ? '0' : (diff > 0 ? '+' : '-') + formatNumber(absDiff)}`;
         
         playerCol.classList.add('glow-fair');
@@ -194,22 +199,24 @@ function updateTotals() {
         statusBox.style.boxShadow = "0 0 20px rgba(255, 223, 93, 0.3)";
     } 
     else if (pt > ot) {
+        // اللاعب يدفع أكثر مما يأخذ -> خسارة
         statusTitle.textContent = "LOSE";
-        statusTitle.style.color = "#ff4c4c";
+        statusTitle.style.color = "#ff4c4c"; // أحمر
         statusDiff.textContent = `Diff: -${formatNumber(absDiff)}`;
         
         playerCol.classList.add('glow-lose');
-        opponentCol.classList.add('glow-win');
+        opponentCol.classList.add('glow-win'); // الخصم هو المستفيد
         statusBox.style.borderColor = "#ff4c4c";
         statusBox.style.boxShadow = "0 0 20px rgba(255, 76, 76, 0.4)";
     } 
     else {
+        // اللاعب يأخذ أكثر مما يدفع -> فوز
         statusTitle.textContent = "WIN";
-        statusTitle.style.color = "#00ff00";
+        statusTitle.style.color = "#00ff00"; // أخضر
         statusDiff.textContent = `Diff: +${formatNumber(absDiff)}`;
         
         playerCol.classList.add('glow-win');
-        opponentCol.classList.add('glow-lose');
+        opponentCol.classList.add('glow-lose'); // الخصم هو الخاسر
         statusBox.style.borderColor = "#00ff00";
         statusBox.style.boxShadow = "0 0 20px rgba(0, 255, 0, 0.4)";
     }
@@ -249,22 +256,24 @@ function formatNumber(num) {
     if (num >= 1_000) return (num / 1_000).toFixed(1).replace(/\.0$/, '') + 'K';
     return num.toString();
 }
-
 // زر تفريغ الحسبة
 const clearTradeBtn = document.getElementById("clearTradeBtn");
-if (clearTradeBtn) {
-    clearTradeBtn.addEventListener("click", () => {
-        const allSlots = [...playerSlots, ...opponentSlots];
+
+clearTradeBtn.addEventListener("click", () => {
+    // دمج مصفوفتي اللاعب والخصم لتسهيل التكرار
+    const allSlots = [...playerSlots, ...opponentSlots];
+    
+    allSlots.forEach(slot => {
+        // إعادة الشكل الافتراضي
+        slot.innerHTML = '<div class="plus">+</div>';
         
-        allSlots.forEach(slot => {
-            slot.innerHTML = '<div class="plus">+</div>';
-            delete slot.dataset.item;
-            delete slot.dataset.value;
-            delete slot.dataset.demand;
-            delete slot.dataset.trend;
-        });
-        updateTotals();
+        // مسح جميع البيانات المخزنة
+        delete slot.dataset.item;
+        delete slot.dataset.value;
+        delete slot.dataset.demand;
+        delete slot.dataset.trend;
     });
-}
-    }
+    
+    // استدعاء دالة التحديث لإعادة الأرقام والألوان لحالة الصفر
+    updateTotals();
 });
