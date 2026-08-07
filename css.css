@@ -1,16 +1,15 @@
-body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: white; display: flex; flex-direction: column; align-items: center; margin: 0; padding: 20px 5vw 20px 20px; /* إضافة مسافة يمنى لعدم تغطية الشريط المصغر للمحتوى */ min-height: 100vh; }
+body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: white; display: flex; flex-direction: column; align-items: center; margin: 0; padding: 20px; min-height: 100vh; }
 .container {
     display: flex;
-    justify-content: center; 
-    flex-wrap: wrap;       
-    width: 95%;           
+    justify-content: center; /* توسيط العناصر بدلاً من space-between */
+    flex-wrap: wrap;       /* للسماح للعناصر بالنزول لسطر جديد عند ضيق المساحة */
+    width: 95%;           /* زيادة العرض قليلاً في الشاشات الصغيرة */
     max-width: 1200px;
     margin: 50px auto;
     gap: 20px;
 }
-
 /* ==========================================
-   Responsive Sidebar & Toggle Button (#253b73)
+   Responsive Sidebar & Toggle Button (#162447)
    ========================================== */
 
 /* زر الـ 3 شلاطات المطور */
@@ -19,8 +18,9 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
   top: clamp(12px, 2vw, 24px);
   right: clamp(12px, 2vw, 24px);
   z-index: 1001;
-  background-color: #253b73; /* اللون الجديد */
+  background-color: #162447; /* اللون المطلوب */
   border: none;
+  /* حجم متغير يتناسب مع الشاشة */
   width: clamp(42px, 4vw, 54px);
   height: clamp(42px, 4vw, 54px);
   border-radius: clamp(8px, 1vw, 14px);
@@ -35,107 +35,93 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
 }
 
 .sidebar-toggle:hover {
-  background-color: #2f4a8f; 
+  background-color: #1f315c; /* درجة أفتح قليلاً عند تحريك الماوس عليه */
 }
 
+/* الشلاطات الثلاث باللون الأبيض الصافي */
 .sidebar-toggle span {
   display: block;
   width: clamp(20px, 2vw, 26px);
   height: clamp(2.5px, 0.25vw, 3.5px);
-  background-color: #ffffff !important; 
+  background-color: #ffffff !important; /* لون ابيض ناصع */
   border-radius: 4px;
   transition: all 0.3s ease;
 }
 
+/* دوران الزر 90 درجة عند النقر */
 .sidebar-toggle.active {
   transform: rotate(90deg);
 }
 
-/* الشريط الجانبي - التعديل الجديد */
+/* الشريط الجانبي بتنسيق تجاوبي */
 .sidebar {
   position: fixed;
   top: 0;
-  right: 0; /* الشريط ظاهر دائماً */
-  width: 5vw; /* العرض 5% قبل الفتح */
-  height: 100vh; /* الطول يشمل الصفحة كاملة */
-  background-color: #253b73; /* اللون الجديد */
+  right: calc(-1 * clamp(250px, 25vw, 380px)); /* إخفاء بناءً على العرض المتغير */
+  /* العرض يتغير من 250px على الهواتف الصغيرة حتى 380px على الشاشات الضخمة */
+  width: clamp(250px, 25vw, 380px);
+  height: 100vh;
+  background-color: #162447; /* لون الشريط الرئيسي */
   color: #ffffff;
   z-index: 1000;
-  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.4);
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  align-items: center; /* توسيط العناصر عند التقلص */
-  padding: clamp(70px, 8vw, 100px) 0.5vw 20px 0.5vw; 
+  padding: clamp(70px, 8vw, 100px) clamp(16px, 2vw, 30px) 20px clamp(16px, 2vw, 30px);
   box-sizing: border-box;
-  overflow-x: hidden; /* لمنع خروج النصوص أثناء التقلص */
 }
 
-/* إظهار الشريط عند التفعيل (35% من عرض الشاشة) */
+/* إظهار الشريط عند التفعيل */
 .sidebar.active {
-  width: clamp(30%, 35%, 40%); 
-  align-items: flex-start;
-  padding: clamp(70px, 8vw, 100px) clamp(16px, 2vw, 30px) 20px clamp(16px, 2vw, 30px);
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  right: 0;
 }
 
 .sidebar-header h3 {
   margin-bottom: clamp(15px, 2vw, 30px);
-  font-size: clamp(0.5rem, 1.5vw, 1.5rem); /* تصغير مرن للنص */
+  font-size: clamp(1.1rem, 1.3vw, 1.5rem);
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   padding-bottom: 12px;
   color: #ffffff;
-  white-space: nowrap;
-  transition: font-size 0.4s ease;
 }
 
-.sidebar.active .sidebar-header h3 {
-  font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+/* روابط القائمة */
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.sidebar-nav { width: 100%; }
-.sidebar-nav ul { list-style: none; padding: 0; margin: 0; width: 100%; }
-.sidebar-nav li { margin-bottom: clamp(8px, 1vw, 14px); }
+.sidebar-nav li {
+  margin-bottom: clamp(8px, 1vw, 14px);
+}
 
-/* الروابط تتقلص بالنسبة والتناسب */
 .sidebar-nav a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: clamp(5px, 1vw, 14px) 0;
+  display: block;
+  padding: clamp(10px, 1vw, 14px) clamp(12px, 1.2vw, 18px);
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   border-radius: 8px;
-  font-size: clamp(0.4rem, 1vw, 1.15rem); /* خط يتناسب مع 5% */
+  font-size: clamp(0.95rem, 1.1vw, 1.15rem);
   font-weight: 500;
-  white-space: nowrap;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
-}
-
-.sidebar.active .sidebar-nav a {
-  justify-content: flex-start;
-  padding: clamp(10px, 1vw, 14px) clamp(12px, 1.2vw, 18px);
-  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  transition: background 0.25s, color 0.25s, transform 0.2s;
 }
 
 .sidebar-nav a:hover,
 .sidebar-nav a.active {
   background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
-}
-.sidebar.active .sidebar-nav a:hover,
-.sidebar.active .sidebar-nav a.active {
-  transform: translateX(-5px);
+  transform: translateX(-5px); /* إزاحة خفيفة لليسار عند التمرير بالماوس */
 }
 
+/* طبقة الظلام المركزة على الصفحة */
 .sidebar-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  /* خفض إضاءة الخلفية مع تظليل ناعم وتأثير ضبابي خفيف */
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -150,7 +136,7 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
   visibility: visible;
 }
 
-/* تحديثات الألوان في باقي الصفحة */
+/* تحديثات الـ Column لإضافة الحواف التفاعلية */
 .column { 
     display: flex; 
     flex-direction: column; 
@@ -158,24 +144,23 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
     background-color: #0f1626; 
     padding: 15px; 
     border-radius: 15px; 
-    flex: 1;
-    min-width: 320px;
-    max-width: 450px; 
-}
+    flex: 1; /* جعل العمود يأخذ مساحة متساوية */
+    min-width: 320px; /* ضمان عدم صغر العمود عن حجم الشبكة */
+    max-width: 450px; /* تحديد أقصى عرض ليبقى التصميم متوازناً */ }
 
 .title { font-size: 1.5rem; font-weight: bold; margin-bottom: 10px; }
 .grid { 
     display: grid; 
     grid-template-columns: repeat(4, 1fr); 
     gap: 10px; 
-    width: 100%; 
+    width: 100%; /* أساسي لمنع انكماش السلوتات الفارغة وظهورها بكامل حجمها */
     box-sizing: border-box; }
 
 .slot { 
     width: 100%;
-    aspect-ratio: 1 / 1.15; 
-    background-color: #253b73; /* اللون الجديد */
-    border: 2px solid #0f1626; 
+    aspect-ratio: 1 / 1.15; /* تم زيادة الطول قليلاً من 1.1 ليتسع للنص السفلي بالكامل */
+    background-color: #162447; 
+    border: 2px solid #0f1626; /* تم حذف الـ border المتقطع لمنح السلوت مظهراً نظيفاً */
     border-radius: 12px; 
     display: flex; 
     flex-direction: column; 
@@ -188,20 +173,19 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
     box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
     box-sizing: border-box; }
     
-.slot[data-item] {
+    .slot[data-item] {
     border: 2px solid #ffdf5d;
     background-color: #0f1626;
     box-shadow: 0 4px 10px rgba(0,0,0,0.6);
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; 
+    justify-content: flex-end; /* لدفع شريط المعلومات ليلتصق بالأسفل بشكل نظيف */
 }
-
-.item-info-bar {
+    .item-info-bar {
     width: 100%;
-    height: auto; 
-    min-height: 28px; 
-    flex-shrink: 0; 
+    height: auto; /* ترك الارتفاع مرن بحسب النص بدلاً من النسبة المئوية القاسية */
+    min-height: 28px; /* ضمان مساحة حد أدنى لا تنكمش */
+    flex-shrink: 0; /* منع المتصفح من سحق أو تصغير هذا الشريط نهائياً على الهاتف */
     background: #0b111e; 
     border-top: 1px solid #ffdf5d33;
     display: flex;
@@ -213,11 +197,11 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
     z-index: 2;
 }
 
-.slot:hover { transform: scale(1.05); background-color: #2f4a8f; } /* تعديل لون الهوفر */
+.slot:hover { transform: scale(1.05); background-color: #1b2a44; }
 .plus { font-size: 2rem; color: white; }
 .item-name { 
     color: #ffffff;
-    font-size: clamp(0.55rem, 2.2vw, 0.75rem); 
+    font-size: clamp(0.55rem, 2.2vw, 0.75rem); /* رفعنا قيمة الـ vw لضمان وضوح الخط على الهاتف */
     font-weight: bold;
     text-align: center;
     white-space: nowrap;
@@ -226,7 +210,7 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
     width: 95%;}
 .item-value {
     color: #ffdf5d; 
-    font-size: clamp(0.5rem, 2vw, 0.7rem); 
+    font-size: clamp(0.5rem, 2vw, 0.7rem); /* رفعنا الحد الأدنى المرن */
     font-weight: 600;
     margin-top: 1px;
     line-height: 1;
@@ -234,12 +218,15 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
 
 .item-image { 
     width: 90%; 
-    height: 55%; 
+    height: 55%; /* تقليل النسبة المئوية الافتراضية لمنع الصورة من دفع النص لأسفل */
     object-fit: contain; 
-    margin: auto auto 2px auto; 
+    margin: auto auto 2px auto; /* تمركز تلقائي ذكي يترك مساحة للنصوص والمؤشرات */
     z-index: 1; 
 }
 
+/* ------------------------------------------- */
+/* أنماط صندوق الحالة (Trade Status Box)       */
+/* ------------------------------------------- */
 #tradeStatusBox {
     background-color: #0f1626;
     border-radius: 15px;
@@ -249,17 +236,17 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    border: 2px solid #253b73; /* اللون الجديد */
+    border: 2px solid #162447;
     min-width: 160px;
     text-align: center;
     transition: all 0.3s ease;
 }
-
+/* تنسيقات الحاوية الوسطى والزر الجديد */
 .center-column {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px; 
+    gap: 15px; /* المسافة بين الصندوق والزر */
 }
 
 #clearTradeBtn {
@@ -279,9 +266,10 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
 #clearTradeBtn:hover {
     background-color: #ff3333;
     box-shadow: 0 0 12px rgba(255, 51, 51, 0.5);
-    transform: scale(1.05); 
+    transform: scale(1.05); /* تأثير حركي خفيف يتماشى مع باقي الموقع */
 }
 
+/* تعديل الـ Responsive ليتماشى مع الحاوية الجديدة */
 @media screen and (max-width: 900px) {
     .center-column { width: 100%; margin: 10px 0; }
     #tradeStatusBox { width: 100%; margin: 0; }
@@ -299,10 +287,16 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
     font-weight: 600;
 }
 
+/* ------------------------------------------- */
+/* فئات تأثيرات الإضاءة (Glow Effects)         */
+/* ------------------------------------------- */
 .glow-win { box-shadow: 0 0 25px rgba(0, 255, 0, 0.5) !important; border-color: #00ff00 !important; }
 .glow-lose { box-shadow: 0 0 25px rgba(255, 76, 76, 0.5) !important; border-color: #ff4c4c !important; }
 .glow-fair { box-shadow: 0 0 25px rgba(255, 223, 93, 0.4) !important; border-color: #ffdf5d !important; }
 
+/* ------------------------------------------- */
+/* مؤشرات الطلب والاتجاه (Demand & Trend)      */
+/* ------------------------------------------- */
 .item-indicators {
     position: absolute;
     top: 4px;
@@ -318,7 +312,7 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
     color: #ffdf5d;
     padding: 1px 4px;
     border-radius: 4px;
-    font-size: clamp(0.45rem, 1.2vw, 0.6rem); 
+    font-size: clamp(0.45rem, 1.2vw, 0.6rem); /* حجم مرن جداً */
     font-weight: bold;
 }
 
@@ -342,20 +336,25 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
     border-radius: 18px;
     box-sizing: border-box;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+
+    /* التعديل الجوهري هنا لترتيب المحتوى داخله عمودياً */
     display: flex;
     flex-direction: column;
     gap: 20px;
  }   
  .boxes-wrapper {
     display: flex;
-    flex-direction: row; 
+    flex-direction: row; /* يظهران بجانب بعضهما */
     justify-content: center;
-    align-items: stretch; 
+    align-items: stretch; /* لتوحيد الارتفاع تلقائياً لمظهر متناسق */
     gap: 20px;
     width: 100%;
     flex-wrap: wrap;
  }
 
+/* ------------------------------------------- */
+/* المودال وقوائمه                             */
+/* ------------------------------------------- */
 .modal { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); display: flex; justify-content: center; align-items: center; z-index: 300; padding: 20px; overflow-y: auto; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
 .modal.active { opacity: 1; pointer-events: auto; }
 .modal.closing { opacity: 0; pointer-events: none; }
@@ -363,13 +362,12 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
 .modal.active .modal-content { opacity: 1; transform: translateY(0); }
 .modal.closing .modal-content { opacity: 0; transform: translateY(60px); }
 .modal-header { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
-
 .search-container { 
     display: flex; 
-    align-items: center; 
+    align-items: center; /* لضمان توسط المدخل والأيقونة عمودياً */
     width: 100%; 
-    max-width: 400px; 
-    background: #253b73; /* اللون الجديد */
+    max-width: 400px; /* تحديد أقصى عرض للشريط ليحتوي الـ X وينتهي بعدها بقليل */
+    background: #162447; 
     border-radius: 10px; 
     padding: 6px 12px; 
     border: 1px solid #ffdf5d; 
@@ -397,7 +395,8 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
 .available-items-header .item-count { color: #ffdf5d; font-size: 0.85rem; }
 .modal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); gap: 30px 18px; justify-items: center; }
 
-.modal-item { background: linear-gradient(145deg, #253b73, #2f4a8f); /* اللون الجديد */ border-radius: 10px; padding: 4px; text-align: center; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 2px 6px rgba(255, 215, 0, 0.25); border: 1px solid #ffdf5d; width: 100%; box-sizing: border-box; position: relative; overflow: hidden; }
+/* تعديل العنصر داخل المودال ليحمل المؤشرات */
+.modal-item { background: linear-gradient(145deg, #162447, #1b2a44); border-radius: 10px; padding: 4px; text-align: center; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 2px 6px rgba(255, 215, 0, 0.25); border: 1px solid #ffdf5d; width: 100%; box-sizing: border-box; position: relative; overflow: hidden; }
 .modal-item:hover { transform: scale(1.05); box-shadow: 0 0 12px rgba(255, 215, 0, 0.6); }
 .modal-item img { width: 100%; height: 75px; object-fit: contain; border-radius: 5px; border-bottom: 1px solid #ffdf5d; }
 .modal-item .item-name { margin-top: 3px; font-size: 0.75rem; font-weight: bold; color: #fff; }
@@ -405,29 +404,30 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
 
 .modal-content::-webkit-scrollbar { width: 1px; height:1px; }
 .modal-content::-webkit-scrollbar-thumb { background-color: #ffdf5d; border-radius: 10px; }
-.modal-content::-webkit-scrollbar-track { background: #253b73; /* اللون الجديد */ }
+.modal-content::-webkit-scrollbar-track { background: #162447; }
 
+/* Updates and Discord Boxes */
 .updates-box, .discord-box { 
+
     flex: 1; 
     min-width: 280px; 
     max-width: 550px; 
-    background-color: #253b73; /* اللون الجديد للحماية */
+    background-color: #162447; 
     border-radius: 12px; 
-    padding: 20px 20px 10px 20px; 
+    padding: 20px 20px 10px 20px; /* تقليص الـ padding السفلي الثابت إلى 10px ليسمح بالانكماش للأعلى */
     color: #fff; 
     box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; 
-    height: fit-content; 
+    justify-content: flex-start; /* يضمن دفع المحتويات للأعلى وتقلص الصندوق بدقة */
+    height: fit-content; /* يجعل ارتفاع الصندوق يتبع النص الداخلي فقط فيتقلص للأعلى تلقائياً */
     }
 
 .updates-box { background: #2b2b2b; border-left: 5px solid #ffeb3b; }
 .discord-box { background: #2b2b2b; border-left: 5px solid #4fc3f7; }
 .discord-box a { display: inline-block; background: #5865F2; color: #ffffff; text-decoration: none; font-weight: bold; padding: 10px ; border-radius: 6px; transition: transform 0.2s, box-shadow 0.2s; font-size: 0.8rem; white-space: nowrap; box-sizing: border-box; }
 .discord-box a:hover { transform: scale(1.05); box-shadow: 0 0 8px rgba(255,255,255,0.6); }
-
 @media screen and (max-width: 900px) {
   .container { flex-direction: column; align-items: center; }
   #tradeStatusBox { width: 100%; margin: 10px 0; }
@@ -442,9 +442,9 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
 .join-discord-btn { display: block; clear: both; margin-top: 15px; }
 .discord-box a:last-child {
     display: block; 
-    width: 100%; 
-    max-width: 240px; 
-    margin: 15px auto 5px auto; 
+    width: 100%; /* تحويله لعرض كامل متجاوب */
+    max-width: 240px; /* تحديد سقف لحجمه لكي لا يصبح ضخماً على الشاشات الكبيرة */
+    margin: 15px auto 5px auto; /* توسيط الزر تلقائياً في المنتصف وحذف الـ margin-left المسبب للمشكلة */
     padding: 10px 12px; 
     font-size: 1rem; 
     background: #5865F2; 
@@ -456,7 +456,10 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
     transition: transform 0.2s, box-shadow 0.2s; 
     box-sizing: border-box;}
 .discord-box a:last-child:hover { transform: scale(1.05); box-shadow: 0 0 8px rgba(255,255,255,0.6); }
-.updates-box h3, .discord-box h3 { margin-top: 5px; margin-bottom: 8px; }    
+.updates-box h3, .discord-box h3 {
+    margin-top: 5px;
+    margin-bottom: 8px; /* تقليل الفراغ أسفل العنوان */
+}    
 
 #refreshNotice { 
     background: rgba(255, 50, 50, 0.15); 
@@ -464,115 +467,199 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
     color: #ff4c4c; 
     font-weight: bold; 
     text-align: center; 
-    padding: 10px 20px; 
+    padding: 10px 20px; /* زيادة الحشو الجانبي لمنع الالتصاق */
     border-radius: 12px; 
     margin-bottom: 5px; 
     font-size: 1.1rem; 
     box-shadow: 0 0 10px rgba(255, 50, 50, 0.4); 
     animation: pulseColor 7s infinite; 
-    align-self: center; 
-    width: fit-content; 
+    align-self: center; /* جعل الحاوية تتقلص لتناسب حجم النص فقط وتتوسط الصفحة */
+    width: fit-content; /* للتأكد من ملاءمة العرض لمحتواه في جميع المتصفحات */
 }
 
 @keyframes pulseColor { 0% { box-shadow: 0 0 6px rgba(255, 50, 50, 0.5); transform: scale(1); border-color:#ff4c4c; } 50% { box-shadow: 0 0 20px rgba(255,150,50,0.9); transform: scale(1.05); border-color:#ff9933; } 100% { box-shadow: 0 0 6px rgba(255, 50, 50, 0.5); transform: scale(1); border-color:#ff4c4c; } }
 #commentNotice { 
-    background: #253b73; /* اللون الجديد */
+    background: #162447; 
     border-radius: 10px; 
-    padding: 10px 20px; 
+    padding: 10px 20px; /* زيادة الحشو الجانبي */
     text-align: center; 
     font-weight: bold; 
     color: #ffdf5d; 
     font-size: 1.1rem; 
     margin-bottom: 15px; 
-    align-self: center; 
+    align-self: center; /* تجعله يتقلص لعرض النص فقط ويتوسط الصفحة */
     width: fit-content;
  }
 #commentsSection::after { content: ""; display: table; clear: both; }
 
+/* 1. الحاوية الأساسية لتنظيم العناصر بجانب بعضها */
 .footer-container {
     display: flex;
-    justify-content: center; 
-    flex-wrap: wrap;       
+    justify-content: center; /* توسيط المحتوى */
+    flex-wrap: wrap;       /* للسماح للعناصر بالنزول لسطر عند ضيق الشاشة */
     width: 95%;
     max-width: 1200px;
     margin: 40px auto;
     gap: 30px;
+     
 }
 
+/* 2. تنسيق صندوق المعلومات الجديد الصغير */
 .info-section {
-    flex: 1.2; 
+    flex: 1.2; /* تم تقليله من 2 إلى 1.2 لكي ينكمش ولا يسرق الانتباه مقارنة بباقي الصناديق */
     min-width: 300px;
     padding: 18px;
     background-color: #0b111e;
     border-radius: 12px;
-    border: 1px solid #bfa36855; 
+    border: 1px solid #bfa36855; /* جعلنا الحواف أقل حدة في الإضاءة */
     line-height: 1.5;
-    color: #b3b3b3; 
+    color: #b3b3b3; /* تفتيح خفيف للون النص ليكون مريحاً وأقل جلباً للانتباه */
     box-sizing: border-box;
-    font-size: 0.9rem; 
+    font-size: 0.9rem; /* تصغير الخط العام للصندوق قليلاً */
 }
-.indicator-explain {
+    .indicator-explain {
     background: rgba(0, 0, 0, 0.4);
     padding: 2px 6px;
     border-radius: 4px;
     color: #fff;
     font-family: monospace;
 }
-.info-section h2 { font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 8px; }
-.info-section h3 { font-size: 0.95rem; color: #fff; margin-top: 12px; margin-bottom: 6px; }
-.info-section ul { padding-left: 20px; margin-bottom: 12px; }
-.info-section li { margin-bottom: 4px; }
+.info-section h2 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
 
-.disclaimer { font-size: 0.7rem; color: #444; margin-top: 15px; border-top: 1px dashed #222c3c; padding-top: 8px; line-height: 1.4; }
+.info-section h3 {
+    font-size: 0.95rem;
+    color: #fff;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
 
+.info-section ul {
+    padding-left: 20px;
+    margin-bottom: 12px;
+}
+
+.info-section li {
+    margin-bottom: 4px;
+}
+
+.disclaimer {
+    font-size: 0.7rem;
+    color: #444; 
+    margin-top: 15px;
+    border-top: 1px dashed #222c3c;
+    padding-top: 8px;
+    line-height: 1.4;
+}
+
+/* 3. تنسيق الـ site-footer الصاعد لليمين بحدوده الفاصلة */
 .site-footer {
-    flex: 1; 
-    text-align: left; 
+    flex: 1; /* يأخذ المساحة المتبقية بجانب الصندوق */
+    text-align: left; /* محاذاة مرنة، يمكنك تركها right إن كنت تفضل ذلك */
     font-size: 12px;
     color: #666;
     padding: 20px;
-    border-top: none; 
+    border-top: none; /* ألغينا الحد العلوي الافتراضي لاعتماده كعمود جانبي الآن */
     min-width: 250px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
+    justify-content: center; /* لتوسيط المحتوى عمودياً بالتوازي مع الصندوق */
 }
 
-.footer-links a { color: #888; text-decoration: none; margin: 0 5px; transition: color 0.3s ease; }
-.footer-links a:hover { color: #fff; }
+.footer-links a {
+    color: #888;
+    text-decoration: none;
+    margin: 0 5px;
+    transition: color 0.3s ease;
+}
 
+.footer-links a:hover {
+    color: #fff;
+}
+
+/* 4. تعديل التجاوب للتأكد من أن شكلها بالجوال يبدو ممتازاً */
+/* 4. تعديل التجاوب للتأكد من أن شكلها بالجوال يبدو ممتازاً */
 @media screen and (max-width: 900px) {
     .footer-container {
         flex-direction: column; 
-        align-items: stretch; 
+        align-items: stretch; /* لجعل العناصر تأخذ كامل العرض المتاح بشكل متناسق */
         gap: 20px;
     }
-    .info-section { width: 100%; }
-    .site-footer { text-align: center; width: 100%; border-top: 1px solid #222; padding-top: 20px; }
+    .info-section {
+        width: 100%;
+    }
+    .site-footer {
+        text-align: center; 
+        width: 100%;
+        border-top: 1px solid #222; /* إضافة خط فاصل فقط عند التحول للوضع الرأسي بالجوال */
+        padding-top: 20px;
+    }
 }
-
-.adsterra-top-banner { margin: 20px auto; max-width: 1200px; padding: 0 15px; text-align: center; box-sizing: border-box; }
-.ad-label-global { display: block; font-size: 11px; color: #555; margin-bottom: 6px; text-align: left; max-width: 728px; margin-left: auto; margin-right: auto; }
-#adsterra-dynamic-container { display: block; width: 100%; min-height: 50px; }
-
-@media (max-width: 768px) {
-    .adsterra-top-banner { margin: 10px auto; }
-    .ad-label-global { max-width: 320px; }
-}
-
-.adsterra-native-bottom {
-    margin: 30px auto;
-    max-width: 1200px; 
-    padding: 20px 15px;
-    background: #141421; 
-    border-radius: 12px; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+/* تنسيق حاوية الإعلان العلوي */
+.adsterra-top-banner {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 0 15px;
+    text-align: center;
     box-sizing: border-box;
 }
 
-.ad-label-global { display: block; font-size: 12px; color: #666; margin-bottom: 12px; text-align: right; font-family: sans-serif; }
+.ad-label-global {
+    display: block;
+    font-size: 11px;
+    color: #555;
+    margin-bottom: 6px;
+    text-align: left;
+    max-width: 728px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+#adsterra-dynamic-container {
+    display: block;
+    width: 100%;
+    min-height: 50px; /* يعطي مساحة صغيرة مرنة لحين تحميل الإعلان */
+}
+
+/* تعديل المسافات في الجوال */
 @media (max-width: 768px) {
-    .adsterra-native-bottom { margin: 15px 10px; padding: 15px 10px; }
+    .adsterra-top-banner {
+        margin: 10px auto;
+    }
+    .ad-label-global {
+        max-width: 320px;
+    }
+}
+    /* تنسيق إعلان الـ Native السفلي */
+.adsterra-native-bottom {
+    margin: 30px auto;
+    max-width: 1200px; /* ليتماشى مع عرض محتوى موقعك بالكامل */
+    padding: 20px 15px;
+    background: #141421; /* لون خلفية داكن وناعم جداً ملائم للون الإعلانات والصفحة */
+    border-radius: 12px; /* زوايا منحنية أنيقة */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* ظل خفيف لإبراز الحاوية */
+    box-sizing: border-box;
+}
+
+/* تسمية الإعلان */
+.ad-label-global {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 12px;
+    text-align: right; /* لتتناسب مع اتجاه الكتابة العربية في موقعك */
+    font-family: sans-serif;
+}
+
+/* ضبط التباعد على الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .adsterra-native-bottom {
+        margin: 15px 10px;
+        padding: 15px 10px;
+    }
 }
