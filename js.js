@@ -277,3 +277,24 @@ clearTradeBtn.addEventListener("click", () => {
     // استدعاء دالة التحديث لإعادة الأرقام والألوان لحالة الصفر
     updateTotals();
 });
+// Floating Sidebar Logic
+document.addEventListener('DOMContentLoaded', () => {
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const floatingSidebar = document.getElementById('floatingSidebar');
+  const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+
+  function toggleSidebar() {
+    const isOpen = floatingSidebar.classList.toggle('is-open');
+    sidebarBackdrop.classList.toggle('is-active', isOpen);
+  }
+
+  function closeSidebar() {
+    floatingSidebar.classList.remove('is-open');
+    sidebarBackdrop.classList.remove('is-active');
+  }
+
+  if (sidebarToggle && floatingSidebar && sidebarBackdrop) {
+    sidebarToggle.addEventListener('click', toggleSidebar);
+    sidebarBackdrop.addEventListener('click', closeSidebar);
+  }
+});
