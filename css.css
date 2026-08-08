@@ -609,11 +609,19 @@ body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: whi
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  padding: 70px 16px 20px 16px;
+  /* تم زيادة المسافة العلوية وتعديلها لتكون مرنة حسب ارتفاع الشاشة */
+  padding: clamp(80px, 12vh, 130px) 16px 20px 16px;
   box-sizing: border-box;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+/* في الشاشات الصغيرة/الجوال، نُبقي المسافة أصغر قليلاً لمنع الهدر */
+@media screen and (max-width: 768px) {
+  .sidebar-inner {
+    padding-top: 65px;
+  }
 }
 
 .floating-sidebar.is-open .sidebar-inner {
