@@ -169,19 +169,37 @@
 <!-- ربط ملف JavaScript -->
 <script src="js.js"></script>
   
-<!-- Floating Sidebar Component -->
+<!-- Navigation Toggle Button -->
 <button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Toggle Navigation">
-  <span class="hamburger-bar"></span>
-  <span class="hamburger-bar"></span>
-  <span class="hamburger-bar"></span>
+  <div class="hamburger-box">
+    <span class="hamburger-bar"></span>
+    <span class="hamburger-bar"></span>
+    <span class="hamburger-bar"></span>
+  </div>
 </button>
 
+<!-- Navigation Menu Bar -->
 <aside class="floating-sidebar" id="floatingSidebar">
-  <nav class="sidebar-nav">
-    <a href="index.html" class="sidebar-link">Trade Calculator</a>
-    <a href="https://discord.gg/zU2vV78j2F" target="_blank" class="sidebar-link">Discord Community</a>
-    <a href="contact.html" class="sidebar-link">Contact Us</a>
-  </nav>
+  <div class="sidebar-inner">
+    <!-- Top Main Links -->
+    <nav class="sidebar-nav">
+      <a href="index.html" class="sidebar-link active">
+        <span class="icon">⚖️</span> Trade Calculator
+      </a>
+      <a href="https://discord.gg/zU2vV78j2F" target="_blank" class="sidebar-link">
+        <span class="icon">💬</span> Discord Community
+      </a>
+    </nav>
+
+    <!-- Bottom Extra Links (Only visible when open) -->
+    <div class="sidebar-footer-links">
+      <a href="contact.html">Contact Us</a>
+      <span class="sep">•</span>
+      <a href="privacy.html">Privacy Policy</a>
+      <span class="sep">•</span>
+      <a href="terms.html">Terms</a>
+    </div>
+  </div>
 </aside>
 
 <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
