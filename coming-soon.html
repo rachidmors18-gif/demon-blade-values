@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raids & Bosses - Coming Soon</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    
+    <!-- ربط ملف CSS الرئيسي المطابق للموقع -->
+    <link rel="stylesheet" href="css.css">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a1a2e;
+            color: #ccc;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* حاوية المحتوى الخلفي الضبابي */
+        .content-blur-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            filter: blur(6px) brightness(0.4);
+            pointer-events: none; /* منع الضغط على العناصر بالكامل */
+            user-select: none;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #bfa368;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        p.subtitle {
+            color: #b0b8c9;
+            font-size: 1.1rem;
+        }
+
+        /* شبكة عرض الرايدات */
+        .raids-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+            width: 100%;
+        }
+
+        .raid-card {
+            background-color: #0f1626;
+            border-radius: 12px;
+            border: 1px solid rgba(191, 163, 104, 0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .raid-img-container {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            background-color: #162447;
+            overflow: hidden;
+        }
+
+        .raid-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .world-badge {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: rgba(15, 22, 38, 0.85);
+            color: #ffdf5d;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid rgba(191, 163, 104, 0.4);
+        }
+
+        .raid-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .raid-title {
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+        }
+
+        .raid-desc {
+            color: #b0b8c9;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        /* طبقة النص والتعتيم فوق المحتوى */
+        .coming-soon-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            background: rgba(15, 22, 38, 0.45);
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .coming-soon-title {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #ffdf5d;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(255, 223, 93, 0.6), 0 0 40px rgba(0, 0, 0, 0.9);
+            margin: 0 0 10px 0;
+        }
+
+        .coming-soon-subtext {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .btn-back {
+            padding: 12px 30px;
+            background-color: #162447;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid #ffdf5d;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            z-index: 11;
+        }
+
+        .btn-back:hover {
+            background-color: #ffdf5d;
+            color: #0f1626;
+            transform: scale(1.05);
+        }
+
+        @media screen and (max-width: 768px) {
+            .coming-soon-title { font-size: 2.5rem; letter-spacing: 2px; }
+            .coming-soon-subtext { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- زر القائمة الجانبية Floating Sidebar Toggle -->
+    <button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Toggle Navigation">
+      <div class="hamburger-box">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </div>
+    </button>
+
+    <!-- القائمة الجانبية Floating Sidebar -->
+    <aside class="floating-sidebar" id="floatingSidebar">
+      <div class="sidebar-inner">
+        <nav class="sidebar-nav">
+          <a href="index.html" class="sidebar-link">
+            <span class="icon">⚖️</span> Trade Calculator
+          </a>
+          <a href="coming-soon.html" class="sidebar-link active">
+            <span class="icon">⚔️</span> Raids & Bosses
+          </a>
+          <a href="https://discord.gg/zU2vV78j2F" target="_blank" class="sidebar-link">
+            <span class="icon">💬</span> Discord Community
+          </a>
+        </nav>
+
+        <div class="sidebar-footer-links">
+          <a href="contact.html">Contact Us</a>
+          <span class="sep">•</span>
+          <a href="privacy.html">Privacy Policy</a>
+          <span class="sep">•</span>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- المحتوى الخلفي المضلل والمضوب -->
+    <div class="content-blur-wrapper">
+        <header>
+            <h1>Demon Blade Raids & Bosses</h1>
+            <p class="subtitle">Explore all 8 available raids, world bosses, and dungeon locations.</p>
+        </header>
+
+        <div class="raids-grid">
+            <div class="raid-card">
+                <div class="raid-img-container">
+                    <img src="images/serpent-raid.jpg" alt="Raid">
+                    <div class="world-badge">📖 World 2</div>
+                </div>
+                <div class="raid-info">
+                    <h3 class="raid-title">Serpent Raid / Iguro Dungeon</h3>
+                    <p class="raid-desc">Face the powerful Serpent Breathing master in a dark dungeon.</p>
+                </div>
+            </div>
+            <div class="raid-card">
+                <div class="raid-img-container">
+                    <img src="images/rock-god.jpg" alt="Raid">
+                    <div class="world-badge">📖 World 1</div>
+                </div>
+                <div class="raid-info">
+                    <h3 class="raid-title">Rock God (World Boss)</h3>
+                    <p class="raid-desc">Test your strength against the monumental pillar trial boss.</p>
+                </div>
+            </div>
+            <div class="raid-card">
+                <div class="raid-img-container">
+                    <img src="images/pyramid-raid.jpg" alt="Raid">
+                    <div class="world-badge">📖 World 2</div>
+                </div>
+                <div class="raid-info">
+                    <h3 class="raid-title">Pyramid Raid</h3>
+                    <p class="raid-desc">Navigate ancient traps and defeat mystical guardians.</p>
+                </div>
+            </div>
+            <div class="raid-card">
+                <div class="raid-img-container">
+                    <img src="images/ice-castle-raid.jpg" alt="Raid">
+                    <div class="world-badge">📖 World 2</div>
+                </div>
+                <div class="raid-info">
+                    <h3 class="raid-title">Ice Castle Raid</h3>
+                    <p class="raid-desc">Brave the freezing blizzard and conquer the icy fortress lord.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- واجهة Coming Soon مع زر العودة -->
+    <div class="coming-soon-overlay">
+        <h1 class="coming-soon-title">Coming Soon</h1>
+        <p class="coming-soon-subtext">This feature is currently under development.</p>
+        <a href="index.html" class="btn-back">⬅ Back to Calculator</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const floatingSidebar = document.getElementById('floatingSidebar');
+            const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+
+            function openSidebar() {
+                floatingSidebar.classList.add('is-open');
+                sidebarBackdrop.classList.add('is-active');
+            }
+
+            function closeSidebar() {
+                floatingSidebar.classList.remove('is-open');
+                sidebarBackdrop.classList.remove('is-active');
+            }
+
+            sidebarToggle.addEventListener('click', () => {
+                if (floatingSidebar.classList.contains('is-open')) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
+            });
+
+            sidebarBackdrop.addEventListener('click', closeSidebar);
+        });
+    </script>
+</body>
+</html>
