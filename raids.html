@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raids & Bosses - Demon Blade Values</title>
+    
+    <!-- توحيد الخطوط والهوية البصرية -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a1a2e;
+            color: #ccc;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #bfa368;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        p.subtitle {
+            color: #b0b8c9;
+            font-size: 1.1rem;
+        }
+
+        /* شبكة عرض الرايدات (Grid) مشابهة للصورة */
+        .raids-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+        }
+
+        /* بطاقة الرايد الواحدة */
+        .raid-card {
+            background-color: #0f1626;
+            border-radius: 12px;
+            border: 1px solid rgba(191, 163, 104, 0.3);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .raid-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffdf5d;
+            box-shadow: 0 8px 25px rgba(241, 196, 15, 0.2);
+        }
+
+        /* حاوية الصورة */
+        .raid-img-container {
+            position: relative;
+            width: 100%;
+            height: 160px;
+            background-color: #162447;
+            overflow: hidden;
+        }
+
+        .raid-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .raid-card:hover .raid-img-container img {
+            transform: scale(1.08);
+        }
+
+        /* شارة العالم (World 1 / World 2) فوق الصورة */
+        .world-badge {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: rgba(15, 22, 38, 0.85);
+            color: #ffdf5d;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid rgba(191, 163, 104, 0.4);
+        }
+
+        /* تفاصيل أسفل الصورة */
+        .raid-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .raid-title {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+        }
+
+        .raid-desc {
+            color: #b0b8c9;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 10px 25px;
+            background-color: #162447;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid #ffdf5d;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #ffdf5d;
+            color: #0f1626;
+            transform: scale(1.05);
+        }
+
+        @media screen and (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .raids-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Demon Blade Raids & Bosses</h1>
+            <p class="subtitle">Explore all available raids, world bosses, and requirements.</p>
+        </header>
+
+        <!-- شبكة عرض الرايدات -->
+        <div class="raids-grid">
+            
+            <!-- رايد 1: Serpent Raid -->
+            <a href="raid-details.html?raid=serpent" class="raid-card">
+                <div class="raid-img-container">
+                    <img src="images/serpent-raid.jpg" alt="Serpent Raid">
+                    <div class="world-badge">📖 World 2</div>
+                </div>
+                <div class="raid-info">
+                    <h3 class="raid-title">Serpent Raid / Iguro Dungeon</h3>
+                    <p class="raid-desc">Face the powerful Serpent Breathing master in a dark, challenging dungeon environment.</p>
+                </div>
+            </a>
+
+            <!-- رايد 2: Rock God -->
+            <a href="raid-details.html?raid=rock-god" class="raid-card">
+                <div class="raid-img-container">
+                    <img src="images/rock-god.jpg" alt="Rock God">
+                    <div class="world-badge">📖 World 1</div>
+                </div>
+                <div class="raid-info">
+                    <h3 class="raid-title">Rock God (World Boss)</h3>
+                    <p class="raid-desc">Test your strength against the monumental pillar trial boss of stone.</p>
+                </div>
+            </a>
+
+            <!-- رايد 3: Racial Awakenings -->
+            <a href="raid-details.html?raid=racial-awakenings" class="raid-card">
+                <div class="raid-img-container">
+                    <img src="images/racial-awakenings.jpg" alt="Racial Awakenings">
+                    <div class="world-badge">📖 World 2</div>
+                </div>
+                <div class="raid-info">
+                    <h3 class="raid-title">Racial Awakenings</h3>
+                    <p class="raid-desc">Unlock your true potential and master advanced dimensional awakening abilities.</p>
+                </div>
+            </a>
+
+            <!-- رايد 4: Pyramid Raid -->
+            <a href="raid-details.html?raid=pyramid" class="raid-card">
+                <div class="raid-img-container">
+                    <img src="images/pyramid-raid.jpg" alt="Pyramid Raid">
+                    <div class="world-badge">📖 World 1</div>
+                </div>
+                <div class="raid-info">
+                    <h3 class="raid-title">Pyramid Raid</h3>
+                    <p class="raid-desc">Navigate ancient traps and defeat mystical guardians hidden deep within.</p>
+                </div>
+            </a>
+
+            <!-- رايد 5: Maintown Raid -->
+            <a href="raid-details.html?raid=maintown" class="raid-card">
+                <div class="raid-img-container">
+                    <img src="images/maintown-raid.jpg" alt="Maintown Raid">
+                    <div class="world-badge">📖 World 1</div>
+                </div>
+                <div class="raid-info">
+                    <h3 class="raid-title">Maintown Raid</h3>
+                    <p class="raid-desc">Defend the central town area from waves of aggressive attackers.</p>
+                </div>
+            </a>
+
+            <!-- رايد 6: Ice Castle Raid -->
+            <a href="raid-details.html?raid=ice-castle" class="raid-card">
+                <div class="raid-img-container">
+                    <img src="images/ice-castle-raid.jpg" alt="Ice Castle Raid">
+                    <div class="world-badge">📖 World 2</div>
+                </div>
+                <div class="raid-info">
+                    <h3 class="raid-title">Ice Castle Raid</h3>
+                    <p class="raid-desc">Brave the freezing blizzard and conquer the icy fortress lord.</p>
+                </div>
+            </a>
+
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="btn-back">⬅ Back to Calculator</a>
+        </div>
+    </div>
+
+</body>
+</html>
