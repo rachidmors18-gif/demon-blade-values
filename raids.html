@@ -14,7 +14,7 @@
             background-color: #1a1a2e;
             color: #ccc;
             margin: 0;
-            padding: 40px 20px 40px 80px; /* ترك مساحة يسار للشاشة لكي لا يغطي السايد بار المحتوى عند إغلاقه */
+            padding: 40px 20px 40px 80px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -150,119 +150,151 @@
             transform: scale(1.05);
         }
 
-        /* --- تصميم السايد بار العائم (Sidebar) --- */
-        #floatingSidebar {
+        /* --- تصميم السايد بار الجديد والمطابق للموقع --- */
+        .sidebar {
             position: fixed;
             top: 0;
-            left: 0;
-            height: 100vh;
-            width: clamp(60px, 5vw, 80px);
-            background-color: #1a2440;
-            z-index: 99999;
-            box-shadow: 5px 0 15px rgba(0,0,0,0.5);
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-x: hidden;
+            left: -260px;
+            width: 260px;
+            height: 100%;
+            background-color: #0f1626;
+            box-shadow: 2px 0 12px rgba(0, 0, 0, 0.5);
+            transition: left 0.3s ease;
+            z-index: 1000;
             display: flex;
             flex-direction: column;
+            border-right: 1px solid rgba(191, 163, 104, 0.2);
         }
 
-        #floatingSidebar.open {
-            width: 30%;
+        .sidebar.active {
+            left: 0;
         }
 
-        .sidebar-toggle-btn {
+        .sidebar-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(191, 163, 104, 0.2);
+        }
+
+        .sidebar-title {
+            color: #ffdf5d;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .close-sidebar-btn {
             background: none;
             border: none;
-            color: #ffffff;
-            font-size: 1.8rem;
+            color: #fff;
+            font-size: 1.5rem;
             cursor: pointer;
-            padding: 20px;
-            text-align: left;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 15px;
+            transition: color 0.2s;
         }
 
-        .sidebar-content {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s ease-in-out;
-            padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        #floatingSidebar.open .sidebar-content {
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.3s ease-in-out 0.15s;
-        }
-
-        .sidebar-link {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            padding: 10px 15px;
-            border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.05);
-            transition: background 0.2s;
-        }
-
-        .sidebar-link:hover {
-            background-color: rgba(255, 255, 255, 0.15);
+        .close-sidebar-btn:hover {
             color: #ffdf5d;
         }
 
-        /* طبقة الضباب الظلامي الخلفية (Backdrop) */
-        #sidebarBackdrop {
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .sidebar-menu li {
+            width: 100%;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 12px 25px;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            color: #ffdf5d;
+            background-color: rgba(255, 223, 93, 0.05);
+            border-left-color: #ffdf5d;
+        }
+
+        .toggle-sidebar-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #0f1626;
+            color: #ffdf5d;
+            border: 1px solid rgba(191, 163, 104, 0.4);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
+        }
+
+        .toggle-sidebar-btn:hover {
+            background-color: #162447;
+            transform: scale(1.05);
+        }
+
+        .sidebar-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             background-color: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(3px);
-            z-index: 99998;
+            backdrop-filter: blur(2px);
+            z-index: 998;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            transition: all 0.3s ease;
         }
 
-        #sidebarBackdrop.active {
+        .sidebar-overlay.active {
             opacity: 1;
             visibility: visible;
         }
 
         @media screen and (max-width: 768px) {
             body { padding-left: 20px; }
-            #floatingSidebar.open { width: 75%; }
             .raids-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- السايد بار العائم -->
-    <div id="floatingSidebar">
-        <button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Toggle Menu">
-            ☰
-        </button>
-        <div class="sidebar-content">
-            <h3 style="color: #ffdf5d; margin-top: 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">Navigation</h3>
-            <a href="index.html" class="sidebar-link">Calculator</a>
-            <a href="raids.html" class="sidebar-link">Raids & Bosses</a>
-            <a href="contact.html" class="sidebar-link">Contact Us</a>
-            <a href="privacy.html" class="sidebar-link">Privacy Policy</a>
-            <a href="terms.html" class="sidebar-link">Terms of Service</a>
+    <!-- زر فتح السايد بار العائم -->
+    <button class="toggle-sidebar-btn" id="openSidebarBtn" aria-label="Open Menu">☰</button>
+
+    <!-- الهيكل الجديد للسايد بار -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3 class="sidebar-title">Navigation</h3>
+            <button class="close-sidebar-btn" id="closeSidebarBtn">&times;</button>
         </div>
-    </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html">Calculator</a></li>
+            <li><a href="raids.html" class="active">Raids & Bosses</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+    </aside>
 
     <!-- طبقة الضباب الخلفية -->
-    <div id="sidebarBackdrop"></div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <div class="container">
         <header>
@@ -272,8 +304,6 @@
 
         <!-- شبكة عرض الرايدات الـ 8 -->
         <div class="raids-grid">
-            
-            <!-- 1. Serpent Raid -->
             <a href="raid-details.html?raid=serpent" class="raid-card">
                 <div class="raid-img-container">
                     <img src="images/serpent-raid.jpg" alt="Serpent Raid">
@@ -285,7 +315,6 @@
                 </div>
             </a>
 
-            <!-- 2. Rock God -->
             <a href="raid-details.html?raid=rock-god" class="raid-card">
                 <div class="raid-img-container">
                     <img src="images/rock-god.jpg" alt="Rock God">
@@ -297,7 +326,6 @@
                 </div>
             </a>
 
-            <!-- 3. Racial Awakenings -->
             <a href="raid-details.html?raid=racial-awakenings" class="raid-card">
                 <div class="raid-img-container">
                     <img src="images/racial-awakenings.jpg" alt="Racial Awakenings">
@@ -309,7 +337,6 @@
                 </div>
             </a>
 
-            <!-- 4. Pyramid Raid -->
             <a href="raid-details.html?raid=pyramid" class="raid-card">
                 <div class="raid-img-container">
                     <img src="images/pyramid-raid.jpg" alt="Pyramid Raid">
@@ -321,7 +348,6 @@
                 </div>
             </a>
 
-            <!-- 5. Maintown Raid -->
             <a href="raid-details.html?raid=maintown" class="raid-card">
                 <div class="raid-img-container">
                     <img src="images/maintown-raid.jpg" alt="Maintown Raid">
@@ -333,7 +359,6 @@
                 </div>
             </a>
 
-            <!-- 6. Ice Castle Raid -->
             <a href="raid-details.html?raid=ice-castle" class="raid-card">
                 <div class="raid-img-container">
                     <img src="images/ice-castle-raid.jpg" alt="Ice Castle Raid">
@@ -345,7 +370,6 @@
                 </div>
             </a>
 
-            <!-- 7. Blacksmith Village Raid -->
             <a href="raid-details.html?raid=blacksmith" class="raid-card">
                 <div class="raid-img-container">
                     <img src="images/blacksmith-raid.jpg" alt="Blacksmith Village Raid">
@@ -357,7 +381,6 @@
                 </div>
             </a>
 
-            <!-- 8. Moon God -->
             <a href="raid-details.html?raid=moon-god" class="raid-card">
                 <div class="raid-img-container">
                     <img src="images/moon-god.jpg" alt="Moon God">
@@ -368,7 +391,6 @@
                     <p class="raid-desc">Confront the supreme entity under the dark moonlight.</p>
                 </div>
             </a>
-
         </div>
 
         <div style="text-align: center;">
@@ -376,19 +398,26 @@
         </div>
     </div>
 
-    <!-- سكربت التحكم بالسايد بار -->
+    <!-- سكربت التحكم الجافاسكربت الخاص بالسايد بار -->
     <script>
-        const sidebar = document.getElementById('floatingSidebar');
-        const sidebarToggle = document.getElementById('sidebarToggle');
-        const backdrop = document.getElementById('sidebarBackdrop');
+        const sidebar = document.getElementById('sidebar');
+        const openBtn = document.getElementById('openSidebarBtn');
+        const closeBtn = document.getElementById('closeSidebarBtn');
+        const overlay = document.getElementById('sidebarOverlay');
 
-        function toggleMenu() {
-            sidebar.classList.toggle('open');
-            backdrop.classList.toggle('active');
+        function openSidebar() {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
         }
 
-        sidebarToggle.addEventListener('click', toggleMenu);
-        backdrop.addEventListener('click', toggleMenu);
+        function closeSidebar() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        openBtn.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
     </script>
 
 </body>
