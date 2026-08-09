@@ -7,7 +7,8 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/images/favicon.png">
-
+    <link rel="stylesheet" href="css.css">
+    
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -419,6 +420,42 @@
         closeBtn.addEventListener('click', closeSidebar);
         overlay.addEventListener('click', closeSidebar);
     </script>
+<!-- Navigation Toggle Button -->
+<button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Toggle Navigation">
+  <div class="hamburger-box">
+    <span class="hamburger-bar"></span>
+    <span class="hamburger-bar"></span>
+    <span class="hamburger-bar"></span>
+  </div>
+</button>
 
+<!-- Navigation Menu Bar -->
+<aside class="floating-sidebar" id="floatingSidebar">
+  <div class="sidebar-inner">
+    <nav class="sidebar-nav">
+      <!-- زر الصفحة الرئيسية -->
+      <a href="index.html" class="sidebar-link">
+        <span class="icon">⚖️</span> Trade Calculator
+      </a>
+      <!-- تم نقل التأثير النشط (active) لصفحة الريدز -->
+      <a href="raids.html" class="sidebar-link active">
+        <span class="icon">⚔️</span> Raids & Bosses
+      </a>
+      <a href="https://discord.gg/zU2vV78j2F" target="_blank" class="sidebar-link">
+        <span class="icon">💬</span> Discord Community
+      </a>
+    </nav>
+
+    <div class="sidebar-footer-links">
+      <a href="contact.html">Contact Us</a>
+      <span class="sep">•</span>
+      <a href="privacy.html">Privacy Policy</a>
+      <span class="sep">•</span>
+      <a href="terms.html">Terms</a>
+    </div>
+  </div>
+</aside>
+
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 </body>
 </html>
