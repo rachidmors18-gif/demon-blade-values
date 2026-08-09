@@ -7,6 +7,8 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/images/favicon.png">
+    
+    <!-- ربط ملف CSS الرئيسي المطابق للموقع -->
     <link rel="stylesheet" href="css.css">
     
     <style>
@@ -15,13 +17,12 @@
             background-color: #1a1a2e;
             color: #ccc;
             margin: 0;
-            padding: 40px 20px 40px 80px;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
             box-sizing: border-box;
-            transition: padding-left 0.3s ease;
         }
 
         .container {
@@ -151,151 +152,51 @@
             transform: scale(1.05);
         }
 
-        /* --- تصميم السايد بار الجديد والمطابق للموقع --- */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -260px;
-            width: 260px;
-            height: 100%;
-            background-color: #0f1626;
-            box-shadow: 2px 0 12px rgba(0, 0, 0, 0.5);
-            transition: left 0.3s ease;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid rgba(191, 163, 104, 0.2);
-        }
-
-        .sidebar.active {
-            left: 0;
-        }
-
-        .sidebar-header {
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(191, 163, 104, 0.2);
-        }
-
-        .sidebar-title {
-            color: #ffdf5d;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .close-sidebar-btn {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .close-sidebar-btn:hover {
-            color: #ffdf5d;
-        }
-
-        .sidebar-menu {
-            list-style: none;
-            padding: 20px 0;
-            margin: 0;
-            flex-grow: 1;
-        }
-
-        .sidebar-menu li {
-            width: 100%;
-        }
-
-        .sidebar-menu a {
-            display: block;
-            padding: 12px 25px;
-            color: #ccc;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            border-left: 3px solid transparent;
-        }
-
-        .sidebar-menu a:hover,
-        .sidebar-menu a.active {
-            color: #ffdf5d;
-            background-color: rgba(255, 223, 93, 0.05);
-            border-left-color: #ffdf5d;
-        }
-
-        .toggle-sidebar-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: #0f1626;
-            color: #ffdf5d;
-            border: 1px solid rgba(191, 163, 104, 0.4);
-            border-radius: 8px;
-            padding: 10px 14px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 999;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: all 0.2s ease;
-        }
-
-        .toggle-sidebar-btn:hover {
-            background-color: #162447;
-            transform: scale(1.05);
-        }
-
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(2px);
-            z-index: 998;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
         @media screen and (max-width: 768px) {
-            body { padding-left: 20px; }
+            body { padding: 20px 10px; }
             .raids-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- زر فتح السايد بار العائم -->
-    <button class="toggle-sidebar-btn" id="openSidebarBtn" aria-label="Open Menu">☰</button>
+    <!-- زر القائمة الجانبية Floating Sidebar Toggle -->
+    <button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Toggle Navigation">
+      <div class="hamburger-box">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </div>
+    </button>
 
-    <!-- الهيكل الجديد للسايد بار -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h3 class="sidebar-title">Navigation</h3>
-            <button class="close-sidebar-btn" id="closeSidebarBtn">&times;</button>
+    <!-- القائمة الجانبية الموحدة Floating Sidebar -->
+    <aside class="floating-sidebar" id="floatingSidebar">
+      <div class="sidebar-inner">
+        <nav class="sidebar-nav">
+          <a href="index.html" class="sidebar-link">
+            <span class="icon">⚖️</span> Trade Calculator
+          </a>
+          <!-- حالة النشاط على صفحة Raids -->
+          <a href="raids.html" class="sidebar-link active">
+            <span class="icon">⚔️</span> Raids & Bosses
+          </a>
+          <a href="https://discord.gg/zU2vV78j2F" target="_blank" class="sidebar-link">
+            <span class="icon">💬</span> Discord Community
+          </a>
+        </nav>
+
+        <div class="sidebar-footer-links">
+          <a href="contact.html">Contact Us</a>
+          <span class="sep">•</span>
+          <a href="privacy.html">Privacy Policy</a>
+          <span class="sep">•</span>
+          <a href="terms.html">Terms</a>
         </div>
-        <ul class="sidebar-menu">
-            <li><a href="index.html">Calculator</a></li>
-            <li><a href="raids.html" class="active">Raids & Bosses</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms of Service</a></li>
-        </ul>
+      </div>
     </aside>
 
-    <!-- طبقة الضباب الخلفية -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- الخلفية المظلمة عند فتح القائمة -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
     <div class="container">
         <header>
@@ -399,63 +300,33 @@
         </div>
     </div>
 
-    <!-- سكربت التحكم الجافاسكربت الخاص بالسايد بار -->
+    <!-- سكربت التحكم في فتح وإغلاق السايد بار الجديد -->
     <script>
-        const sidebar = document.getElementById('sidebar');
-        const openBtn = document.getElementById('openSidebarBtn');
-        const closeBtn = document.getElementById('closeSidebarBtn');
-        const overlay = document.getElementById('sidebarOverlay');
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const floatingSidebar = document.getElementById('floatingSidebar');
+            const sidebarBackdrop = document.getElementById('sidebarBackdrop');
 
-        function openSidebar() {
-            sidebar.classList.add('active');
-            overlay.classList.add('active');
-        }
+            function openSidebar() {
+                floatingSidebar.classList.add('is-open');
+                sidebarBackdrop.classList.add('is-active');
+            }
 
-        function closeSidebar() {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-        }
+            function closeSidebar() {
+                floatingSidebar.classList.remove('is-open');
+                sidebarBackdrop.classList.remove('is-active');
+            }
 
-        openBtn.addEventListener('click', openSidebar);
-        closeBtn.addEventListener('click', closeSidebar);
-        overlay.addEventListener('click', closeSidebar);
+            sidebarToggle.addEventListener('click', () => {
+                if (floatingSidebar.classList.contains('is-open')) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
+            });
+
+            sidebarBackdrop.addEventListener('click', closeSidebar);
+        });
     </script>
-<!-- Navigation Toggle Button -->
-<button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Toggle Navigation">
-  <div class="hamburger-box">
-    <span class="hamburger-bar"></span>
-    <span class="hamburger-bar"></span>
-    <span class="hamburger-bar"></span>
-  </div>
-</button>
-
-<!-- Navigation Menu Bar -->
-<aside class="floating-sidebar" id="floatingSidebar">
-  <div class="sidebar-inner">
-    <nav class="sidebar-nav">
-      <!-- زر الصفحة الرئيسية -->
-      <a href="index.html" class="sidebar-link">
-        <span class="icon">⚖️</span> Trade Calculator
-      </a>
-      <!-- تم نقل التأثير النشط (active) لصفحة الريدز -->
-      <a href="raids.html" class="sidebar-link active">
-        <span class="icon">⚔️</span> Raids & Bosses
-      </a>
-      <a href="https://discord.gg/zU2vV78j2F" target="_blank" class="sidebar-link">
-        <span class="icon">💬</span> Discord Community
-      </a>
-    </nav>
-
-    <div class="sidebar-footer-links">
-      <a href="contact.html">Contact Us</a>
-      <span class="sep">•</span>
-      <a href="privacy.html">Privacy Policy</a>
-      <span class="sep">•</span>
-      <a href="terms.html">Terms</a>
-    </div>
-  </div>
-</aside>
-
-<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 </body>
 </html>
