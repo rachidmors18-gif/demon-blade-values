@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raids & Bosses - Demon Blade Values</title>
     
-    <!-- توحيد الخطوط والهوية البصرية -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -15,12 +14,13 @@
             background-color: #1a1a2e;
             color: #ccc;
             margin: 0;
-            padding: 40px 20px;
+            padding: 40px 20px 40px 80px; /* ترك مساحة يسار للشاشة لكي لا يغطي السايد بار المحتوى عند إغلاقه */
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
             box-sizing: border-box;
+            transition: padding-left 0.3s ease;
         }
 
         .container {
@@ -47,15 +47,14 @@
             font-size: 1.1rem;
         }
 
-        /* شبكة عرض الرايدات (Grid) مشابهة للصورة */
+        /* شبكة عرض الرايدات الـ 8 */
         .raids-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 25px;
             width: 100%;
         }
 
-        /* بطاقة الرايد الواحدة */
         .raid-card {
             background-color: #0f1626;
             border-radius: 12px;
@@ -74,11 +73,10 @@
             box-shadow: 0 8px 25px rgba(241, 196, 15, 0.2);
         }
 
-        /* حاوية الصورة */
         .raid-img-container {
             position: relative;
             width: 100%;
-            height: 160px;
+            height: 150px;
             background-color: #162447;
             overflow: hidden;
         }
@@ -94,7 +92,6 @@
             transform: scale(1.08);
         }
 
-        /* شارة العالم (World 1 / World 2) فوق الصورة */
         .world-badge {
             position: absolute;
             bottom: 10px;
@@ -108,7 +105,6 @@
             border: 1px solid rgba(191, 163, 104, 0.4);
         }
 
-        /* تفاصيل أسفل الصورة */
         .raid-info {
             padding: 15px;
             display: flex;
@@ -119,7 +115,7 @@
 
         .raid-title {
             color: #fff;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             margin: 0 0 8px 0;
         }
@@ -154,24 +150,130 @@
             transform: scale(1.05);
         }
 
-        @media screen and (max-width: 600px) {
-            h1 { font-size: 2rem; }
+        /* --- تصميم السايد بار العائم (Sidebar) --- */
+        #floatingSidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: clamp(60px, 5vw, 80px);
+            background-color: #1a2440;
+            z-index: 99999;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #floatingSidebar.open {
+            width: 30%;
+        }
+
+        .sidebar-toggle-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 20px;
+            text-align: left;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
+        }
+
+        .sidebar-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease-in-out;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #floatingSidebar.open .sidebar-content {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease-in-out 0.15s;
+        }
+
+        .sidebar-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 10px 15px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            transition: background 0.2s;
+        }
+
+        .sidebar-link:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #ffdf5d;
+        }
+
+        /* طبقة الضباب الظلامي الخلفية (Backdrop) */
+        #sidebarBackdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 99998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #sidebarBackdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media screen and (max-width: 768px) {
+            body { padding-left: 20px; }
+            #floatingSidebar.open { width: 75%; }
             .raids-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <!-- السايد بار العائم -->
+    <div id="floatingSidebar">
+        <button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Toggle Menu">
+            ☰
+        </button>
+        <div class="sidebar-content">
+            <h3 style="color: #ffdf5d; margin-top: 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">Navigation</h3>
+            <a href="index.html" class="sidebar-link">Calculator</a>
+            <a href="raids.html" class="sidebar-link">Raids & Bosses</a>
+            <a href="contact.html" class="sidebar-link">Contact Us</a>
+            <a href="privacy.html" class="sidebar-link">Privacy Policy</a>
+            <a href="terms.html" class="sidebar-link">Terms of Service</a>
+        </div>
+    </div>
+
+    <!-- طبقة الضباب الخلفية -->
+    <div id="sidebarBackdrop"></div>
+
     <div class="container">
         <header>
             <h1>Demon Blade Raids & Bosses</h1>
-            <p class="subtitle">Explore all available raids, world bosses, and requirements.</p>
+            <p class="subtitle">Explore all 8 available raids, world bosses, and dungeon locations.</p>
         </header>
 
-        <!-- شبكة عرض الرايدات -->
+        <!-- شبكة عرض الرايدات الـ 8 -->
         <div class="raids-grid">
             
-            <!-- رايد 1: Serpent Raid -->
+            <!-- 1. Serpent Raid -->
             <a href="raid-details.html?raid=serpent" class="raid-card">
                 <div class="raid-img-container">
                     <img src="images/serpent-raid.jpg" alt="Serpent Raid">
@@ -179,11 +281,11 @@
                 </div>
                 <div class="raid-info">
                     <h3 class="raid-title">Serpent Raid / Iguro Dungeon</h3>
-                    <p class="raid-desc">Face the powerful Serpent Breathing master in a dark, challenging dungeon environment.</p>
+                    <p class="raid-desc">Face the powerful Serpent Breathing master in a dark dungeon.</p>
                 </div>
             </a>
 
-            <!-- رايد 2: Rock God -->
+            <!-- 2. Rock God -->
             <a href="raid-details.html?raid=rock-god" class="raid-card">
                 <div class="raid-img-container">
                     <img src="images/rock-god.jpg" alt="Rock God">
@@ -191,11 +293,11 @@
                 </div>
                 <div class="raid-info">
                     <h3 class="raid-title">Rock God (World Boss)</h3>
-                    <p class="raid-desc">Test your strength against the monumental pillar trial boss of stone.</p>
+                    <p class="raid-desc">Test your strength against the monumental pillar trial boss.</p>
                 </div>
             </a>
 
-            <!-- رايد 3: Racial Awakenings -->
+            <!-- 3. Racial Awakenings -->
             <a href="raid-details.html?raid=racial-awakenings" class="raid-card">
                 <div class="raid-img-container">
                     <img src="images/racial-awakenings.jpg" alt="Racial Awakenings">
@@ -203,23 +305,23 @@
                 </div>
                 <div class="raid-info">
                     <h3 class="raid-title">Racial Awakenings</h3>
-                    <p class="raid-desc">Unlock your true potential and master advanced dimensional awakening abilities.</p>
+                    <p class="raid-desc">Unlock your true potential and master advanced abilities.</p>
                 </div>
             </a>
 
-            <!-- رايد 4: Pyramid Raid -->
+            <!-- 4. Pyramid Raid -->
             <a href="raid-details.html?raid=pyramid" class="raid-card">
                 <div class="raid-img-container">
                     <img src="images/pyramid-raid.jpg" alt="Pyramid Raid">
-                    <div class="world-badge">📖 World 1</div>
+                    <div class="world-badge">📖 World 2</div>
                 </div>
                 <div class="raid-info">
                     <h3 class="raid-title">Pyramid Raid</h3>
-                    <p class="raid-desc">Navigate ancient traps and defeat mystical guardians hidden deep within.</p>
+                    <p class="raid-desc">Navigate ancient traps and defeat mystical guardians.</p>
                 </div>
             </a>
 
-            <!-- رايد 5: Maintown Raid -->
+            <!-- 5. Maintown Raid -->
             <a href="raid-details.html?raid=maintown" class="raid-card">
                 <div class="raid-img-container">
                     <img src="images/maintown-raid.jpg" alt="Maintown Raid">
@@ -227,11 +329,11 @@
                 </div>
                 <div class="raid-info">
                     <h3 class="raid-title">Maintown Raid</h3>
-                    <p class="raid-desc">Defend the central town area from waves of aggressive attackers.</p>
+                    <p class="raid-desc">Defend the central town area from waves of attackers.</p>
                 </div>
             </a>
 
-            <!-- رايد 6: Ice Castle Raid -->
+            <!-- 6. Ice Castle Raid -->
             <a href="raid-details.html?raid=ice-castle" class="raid-card">
                 <div class="raid-img-container">
                     <img src="images/ice-castle-raid.jpg" alt="Ice Castle Raid">
@@ -243,12 +345,51 @@
                 </div>
             </a>
 
+            <!-- 7. Blacksmith Village Raid -->
+            <a href="raid-details.html?raid=blacksmith" class="raid-card">
+                <div class="raid-img-container">
+                    <img src="images/blacksmith-raid.jpg" alt="Blacksmith Village Raid">
+                    <div class="world-badge">📖 World 1</div>
+                </div>
+                <div class="raid-info">
+                    <h3 class="raid-title">Blacksmith Village Raid</h3>
+                    <p class="raid-desc">Protect the historical village from sudden deadly incursions.</p>
+                </div>
+            </a>
+
+            <!-- 8. Moon God -->
+            <a href="raid-details.html?raid=moon-god" class="raid-card">
+                <div class="raid-img-container">
+                    <img src="images/moon-god.jpg" alt="Moon God">
+                    <div class="world-badge">📖 World 2</div>
+                </div>
+                <div class="raid-info">
+                    <h3 class="raid-title">Moon God (World Boss)</h3>
+                    <p class="raid-desc">Confront the supreme entity under the dark moonlight.</p>
+                </div>
+            </a>
+
         </div>
 
         <div style="text-align: center;">
             <a href="index.html" class="btn-back">⬅ Back to Calculator</a>
         </div>
     </div>
+
+    <!-- سكربت التحكم بالسايد بار -->
+    <script>
+        const sidebar = document.getElementById('floatingSidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const backdrop = document.getElementById('sidebarBackdrop');
+
+        function toggleMenu() {
+            sidebar.classList.toggle('open');
+            backdrop.classList.toggle('active');
+        }
+
+        sidebarToggle.addEventListener('click', toggleMenu);
+        backdrop.addEventListener('click', toggleMenu);
+    </script>
 
 </body>
 </html>
