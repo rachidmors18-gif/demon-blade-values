@@ -185,11 +185,11 @@
   },
   {
     "name": "Blood",
-    "value": 7000000,
-    "img": "images/blood.jpg",
+    "value": 40000000,
+    "img": "images/blood2.jpg",
     "category": "demon",
-    "demand": 7,
-    "trend": "stable"
+    "demand": 9,
+    "trend": "dropping"
   },
   {
     "name": "Wolf",
