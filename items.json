@@ -186,7 +186,7 @@
   {
     "name": "Blood",
     "value": 40000000,
-    "img": "images/blood2.jpg",
+    "img": "images/blood2.png",
     "category": "demon",
     "demand": 9,
     "trend": "dropping"
