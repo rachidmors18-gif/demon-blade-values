@@ -233,7 +233,7 @@
   },
   {
     "name": "Serpent 2",
-    "value": 300000000,
+    "value": 280000000,
     "img": "images/serpent2.png",
     "category": "breathing",
     "demand": 10,
