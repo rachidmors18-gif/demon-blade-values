@@ -361,8 +361,32 @@
   },
   {
     "name": "Perm Biwa",
-    "value": 900000000,
+    "value": 1300000000,
     "img": "images/p-biwa.png",
+    "category": "gamepasses",
+    "demand": 8,
+    "trend": "stable"
+  },
+  {
+    "name": "Perm Flame 2",
+    "value": 1200000000,
+    "img": "images/p-flame2.png",
+    "category": "gamepasses",
+    "demand": 8,
+    "trend": "stable"
+  },
+  {
+    "name": "Perm Mist",
+    "value": 900000000,
+    "img": "images/p-mist.png",
+    "category": "gamepasses",
+    "demand": 7,
+    "trend": "stable"
+  },
+  {
+    "name": "Perm Thunder 2",
+    "value": 1200000000,
+    "img": "images/p-t2.png",
     "category": "gamepasses",
     "demand": 7,
     "trend": "stable"
@@ -417,7 +441,7 @@
   },
   {
     "name": "Perm Ice",
-    "value": 1500000000,
+    "value": 1700000000,
     "img": "images/p-ice.png",
     "category": "gamepasses",
     "demand": 9,
