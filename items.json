@@ -100,7 +100,7 @@
     "value": 1000000,
     "img": "images/flower.jpg",
     "category": "breathing",
-    "demand": 5,
+    "demand": 3,
     "trend": "stable"
   },
   {
@@ -121,10 +121,10 @@
   },
   {
     "name": "Flame 2",
-    "value": 8000000,
+    "value": 16000000,
     "img": "images/flame2.png",
     "category": "breathing",
-    "demand": 8.5,
+    "demand": 10,
     "trend": "dropping"
   },
   {
