@@ -96,9 +96,9 @@ modal.onclick = e => {
 function getTrendIcon(trend) {
     if(trend === "rising") return "<span style='color:#00ff00; font-size:0.8rem;'>⬆️</span>";
     if(trend === "dropping") return "<span style='color:#ff4c4c; font-size:0.8rem;'>⬇️</span>";
+    if(trend === "unstable" || trend === "fluctuating") return "<span style='color:#ffaa00; font-size:0.8rem;'>🔄</span>"; // unstable
     return "<span style='color:#7bc4ff; font-size:0.8rem;'>➡️</span>"; // stable
 }
-
 // عرض العناصر داخل المودال (مُحدثة بالطلب والاتجاه)
 function renderItems(list) {
     modalItems.innerHTML = "";
