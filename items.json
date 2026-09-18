@@ -100,7 +100,7 @@
     "value": 2500000,
     "img": "images/flower.webp",
     "category": "breathing",
-    "demand": 7,
+    "demand": 6,
     "trend": "unstable"
   },
   {
