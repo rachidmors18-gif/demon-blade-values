@@ -97,11 +97,11 @@
   },
   {
     "name": "Flower",
-    "value": 1000000,
-    "img": "images/flower.jpg",
+    "value": 2500000,
+    "img": "images/flower.webp",
     "category": "breathing",
-    "demand": 3,
-    "trend": "stable"
+    "demand": 7,
+    "trend": "unstable"
   },
   {
     "name": "Insect",
