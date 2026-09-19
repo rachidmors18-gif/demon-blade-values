@@ -97,7 +97,7 @@
   },
   {
     "name": "Flower",
-    "value": 2500000,
+    "value": 5000000,
     "img": "images/flower.webp",
     "category": "breathing",
     "demand": 6,
@@ -228,7 +228,7 @@
     "value": 30000000,
     "img": "images/serpent.jpg",
     "category": "breathing",
-    "demand": 7,
+    "demand": 5,
     "trend": "dropping"
   },
   {
@@ -241,7 +241,7 @@
   },
   {
     "name": "Ice",
-    "value": 65000000,
+    "value": 80000000,
     "img": "images/ice.jpg",
     "category": "demon",
     "demand": 10,
@@ -257,7 +257,7 @@
   },
   {
     "name": "Sun",
-    "value": 150000000,
+    "value": 180000000,
     "img": "images/sun.jpg",
     "category": "breathing",
     "demand": 8.5,
