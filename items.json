@@ -284,7 +284,7 @@
     "value": 370000000,
     "img": "images/950.png",
     "category": "gamepasses",
-    "demand": 8,
+    "demand": 5,
     "trend": "stable"
   },
   {
@@ -308,7 +308,7 @@
     "value": 270000000,
     "img": "images/2x.png",
     "category": "gamepasses",
-    "demand": 9,
+    "demand": 8,
     "trend": "stable"
   },
   {
@@ -316,7 +316,7 @@
     "value": 270000000,
     "img": "images/3x.png",
     "category": "gamepasses",
-    "demand": 9,
+    "demand": 8,
     "trend": "stable"
   },
   {
@@ -332,7 +332,7 @@
     "value": 250000000,
     "img": "images/red.png",
     "category": "gamepasses",
-    "demand": 6,
+    "demand": 4,
     "trend": "stable"
   },
   {
@@ -340,7 +340,7 @@
     "value": 270000000,
     "img": "images/x4.png",
     "category": "gamepasses",
-    "demand": 9,
+    "demand": 8,
     "trend": "stable"
   },
   {
@@ -348,7 +348,7 @@
     "value": 150000000,
     "img": "images/fost.png",
     "category": "gamepasses",
-    "demand": 6,
+    "demand": 3,
     "trend": "stable"
   },
   {
