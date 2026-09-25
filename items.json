@@ -281,7 +281,7 @@
   },
   {
     "name": "lucky",
-    "value": 220000000,
+    "value": 370000000,
     "img": "images/950.png",
     "category": "gamepasses",
     "demand": 8,
@@ -321,7 +321,7 @@
   },
   {
     "name": "Race Extractor",
-    "value": 120000000,
+    "value": 320000000,
     "img": "images/race.png",
     "category": "gamepasses",
     "demand": 7,
@@ -329,7 +329,7 @@
   },
   {
     "name": "Recovery",
-    "value": 140000000,
+    "value": 250000000,
     "img": "images/red.png",
     "category": "gamepasses",
     "demand": 6,
@@ -365,6 +365,14 @@
     "img": "images/p-biwa.png",
     "category": "gamepasses",
     "demand": 8,
+    "trend": "unstable"
+  },
+  {
+    "name": "Perm Flower",
+    "value": 950000000,
+    "img": "images/p-flower.png",
+    "category": "gamepasses",
+    "demand": 7.5,
     "trend": "unstable"
   },
   {
